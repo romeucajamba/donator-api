@@ -17,22 +17,47 @@ export class AgendaRepository implements IAgendaRepository {
   }
 
   async findById(id_agenda: number): Promise<Agenda | null> {
-    const a = await prisma.agenda.findUnique({ where: { id_agenda } });
+    const a = await prisma.agenda.findUnique({ 
+      where: { id_agenda },
+      include: {
+        doador: true,
+        hospital: true
+      }
+    });
     return a as unknown as Agenda | null;
   }
 
   async findAllByDoador(id_doador: number): Promise<Agenda[]> {
-    const a = await prisma.agenda.findMany({ where: { id_doador } });
+    const a = await prisma.agenda.findMany({ 
+      where: { id_doador },
+      include: {
+        doador: true,
+        hospital: true
+      }
+    });
     return a as unknown as Agenda[];
   }
 
   async findAllByHospital(id_hospital: number): Promise<Agenda[]> {
-    const a = await prisma.agenda.findMany({ where: { id_hospital } });
+    const a = await prisma.agenda.findMany({ 
+      where: { id_hospital },
+      include: {
+        doador: true,
+        hospital: true
+      }
+    });
     return a as unknown as Agenda[];
   }
 
   async findAll(): Promise<Agenda[]> {
-    const a = await prisma.agenda.findMany();
+    const a = await prisma.agenda.findMany(
+      {
+        include: {
+          doador: true,
+          hospital: true
+        }
+      }
+    );
     return a as unknown as Agenda[];
   }
 

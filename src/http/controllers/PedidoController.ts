@@ -301,6 +301,7 @@ export class PedidoController {
     try {
       const service = pedidoFactory();
       const pedidos = await service.getAll();
+      
       if (!pedidos || pedidos.length === 0) {
         return res.status(404).json({ error: 'Nenhum pedido entre hospitais encontrado' });
       }

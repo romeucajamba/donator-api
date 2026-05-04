@@ -128,6 +128,7 @@ export class PedidoService {
 
   async getAll(): Promise<PedidoEntreHospitais[]> {
     const pedidos = await this.pedidoEntreHospitaisRepository.findAll();
+    
     if (!pedidos.length) throw AppError.notFound('No pedidos found');
     return pedidos;
   }
