@@ -32,8 +32,6 @@ export class DoadorService {
       senha_hash
     });
 
-    console.log('Criando doador com os seguintes dados:', doadorEntity);
-
     const created = await this.doadorRepository.create(doadorEntity);
     return this.toResponseDTO(created);
   }

@@ -5,6 +5,7 @@ import { hospitalFactory } from '../factories/hospitalFactory';
 import { auditoriaFactory } from '../factories/auditoriaFactory';
 import { AppError } from '@/shared/error';
 import { ZodError } from 'zod';
+import { randomUUID } from 'crypto';
 
 export class HospitalController {
 
@@ -100,7 +101,7 @@ export class HospitalController {
       const auditoria = auditoriaFactory();
 
       await auditoria.registerAdminSession({
-        id_sessao: result.user.email,
+        id_sessao: randomUUID(),
         id_usuario: result.user.id_hospital,
         ip_origem: req.ip || '0.0.0.0',
         user_agent: req.headers['user-agent'] || 'Desconhecido',

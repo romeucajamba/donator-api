@@ -10,6 +10,7 @@ import { auditoriaFactory } from '../factories/auditoriaFactory';
 import { AppError } from '@/shared/error';
 import { ZodError } from 'zod';
 import { env } from '@/shared/env/env';
+import { randomUUID } from 'crypto';
 
 export class DoadorController {
 
@@ -21,7 +22,7 @@ export class DoadorController {
     try {
       const data = CreateDoadorSchema.parse(req.body);
       const service = daodorFactory();
-      console.log('Dados recebidos para criação de doador:', data);
+
       const result = await service.createDoador(data);
       return res.status(201).json(result);
 
@@ -127,7 +128,7 @@ export class DoadorController {
       const auditoria = auditoriaFactory();
 
       await auditoria.registerDoadorSession({
-        id_sessao: result.user.id_doador.toString(),
+        id_sessao: randomUUID(),
         id_usuario: result.user.id_doador,
         ip_origem: req.ip || '0.0.0.0',
         user_agent: req.headers['user-agent'] || 'Desconhecido',
