@@ -5,7 +5,7 @@ export class Agenda {
   id_doador: number;
   id_hospital: number;
   data_agendada: Date;
-  hora_agendada: Date;
+  hora_agendada: string;
   status?: StatusAgenda;
   observacao_doador?: string | null;
   observacao_hospital?: string | null;

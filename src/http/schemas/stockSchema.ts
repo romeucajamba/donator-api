@@ -9,7 +9,7 @@ export const CreateStockSchema = validations.object({
 
 export const RegisterMovimentoSchema = validations.object({
   id_stock: validations.number().int().positive(),
-  quantidade: validations.number().int(), // pode ser negativo para consumo
+  quantidade: validations.number().int(),
   observacao: validations.string().optional()
 });
 

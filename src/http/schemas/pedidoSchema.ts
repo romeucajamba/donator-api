@@ -10,7 +10,7 @@ export const CreatePedidoSchema = validations.object({
   id_municipio_pedido: validations.number().int().positive(),
   contacto_referencia: validations.string().min(9),
   nivel_urgencia: validations.nativeEnum(NivelUrgencia),
-  mensagem_adicional: validations.string().optional()
+  mensagem_adicional: validations.string().optional(),
 });
 
 // PedidoDoacao

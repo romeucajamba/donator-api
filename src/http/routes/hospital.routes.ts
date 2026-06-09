@@ -22,7 +22,7 @@ routes.put('/:id', controller.updateInfo);
 routes.delete('/:id', controller.deleteHospital);    
 
 // SEGURANÇA
-routes.post('/:id/change-password', controller.changePassword);
+routes.put('/:id/change-password', controller.changePassword);
 routes.post('/reset-password', controller.resetPassword);
 
 export { routes as hospitalRoutes };

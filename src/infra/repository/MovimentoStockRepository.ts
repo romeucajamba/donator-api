@@ -41,4 +41,5 @@ export class MovimentoStockRepository implements IMovimentoStockRepository {
     await prisma.movimentoStock.delete({ where: { id_movimento } });
     return true;
   }
+  
 }

@@ -17,12 +17,14 @@ export class AgendaController {
     try {
       const data = CreateAgendaSchema.parse(req.body);
       const service = agendaFactory();
+      console.log("Criando agenda com dados:", data);
+      const dataHora = `${data.data_agendada}T${data.hora_agendada}:00`;
 
       const result = await service.schedule({
         id_doador: data.id_doador,
         id_hospital: data.id_hospital,
         data_agendada: data.data_agendada,
-        hora_agendada: data.hora_agendada,
+        hora_agendada: dataHora,
         observacao_doador: data.observacao_doador
       });
 

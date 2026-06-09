@@ -15974,7 +15974,7 @@ export namespace Prisma {
     id_doador: number | null
     id_hospital: number | null
     data_agendada: Date | null
-    hora_agendada: Date | null
+    hora_agendada: string | null
     status: $Enums.StatusAgenda | null
     observacao_doador: string | null
     observacao_hospital: string | null
@@ -15987,7 +15987,7 @@ export namespace Prisma {
     id_doador: number | null
     id_hospital: number | null
     data_agendada: Date | null
-    hora_agendada: Date | null
+    hora_agendada: string | null
     status: $Enums.StatusAgenda | null
     observacao_doador: string | null
     observacao_hospital: string | null
@@ -16153,7 +16153,7 @@ export namespace Prisma {
     id_doador: number
     id_hospital: number
     data_agendada: Date
-    hora_agendada: Date
+    hora_agendada: string | null
     status: $Enums.StatusAgenda
     observacao_doador: string | null
     observacao_hospital: string | null
@@ -16263,7 +16263,7 @@ export namespace Prisma {
       id_doador: number
       id_hospital: number
       data_agendada: Date
-      hora_agendada: Date
+      hora_agendada: string | null
       status: $Enums.StatusAgenda
       observacao_doador: string | null
       /**
@@ -16701,7 +16701,7 @@ export namespace Prisma {
     readonly id_doador: FieldRef<"Agenda", 'Int'>
     readonly id_hospital: FieldRef<"Agenda", 'Int'>
     readonly data_agendada: FieldRef<"Agenda", 'DateTime'>
-    readonly hora_agendada: FieldRef<"Agenda", 'DateTime'>
+    readonly hora_agendada: FieldRef<"Agenda", 'String'>
     readonly status: FieldRef<"Agenda", 'StatusAgenda'>
     readonly observacao_doador: FieldRef<"Agenda", 'String'>
     readonly observacao_hospital: FieldRef<"Agenda", 'String'>
@@ -25371,7 +25371,7 @@ export namespace Prisma {
     id_doador?: IntFilter<"Agenda"> | number
     id_hospital?: IntFilter<"Agenda"> | number
     data_agendada?: DateTimeFilter<"Agenda"> | Date | string
-    hora_agendada?: DateTimeFilter<"Agenda"> | Date | string
+    hora_agendada?: StringNullableFilter<"Agenda"> | string | null
     status?: EnumStatusAgendaFilter<"Agenda"> | $Enums.StatusAgenda
     observacao_doador?: StringNullableFilter<"Agenda"> | string | null
     observacao_hospital?: StringNullableFilter<"Agenda"> | string | null
@@ -25386,7 +25386,7 @@ export namespace Prisma {
     id_doador?: SortOrder
     id_hospital?: SortOrder
     data_agendada?: SortOrder
-    hora_agendada?: SortOrder
+    hora_agendada?: SortOrderInput | SortOrder
     status?: SortOrder
     observacao_doador?: SortOrderInput | SortOrder
     observacao_hospital?: SortOrderInput | SortOrder
@@ -25404,7 +25404,7 @@ export namespace Prisma {
     id_doador?: IntFilter<"Agenda"> | number
     id_hospital?: IntFilter<"Agenda"> | number
     data_agendada?: DateTimeFilter<"Agenda"> | Date | string
-    hora_agendada?: DateTimeFilter<"Agenda"> | Date | string
+    hora_agendada?: StringNullableFilter<"Agenda"> | string | null
     status?: EnumStatusAgendaFilter<"Agenda"> | $Enums.StatusAgenda
     observacao_doador?: StringNullableFilter<"Agenda"> | string | null
     observacao_hospital?: StringNullableFilter<"Agenda"> | string | null
@@ -25419,7 +25419,7 @@ export namespace Prisma {
     id_doador?: SortOrder
     id_hospital?: SortOrder
     data_agendada?: SortOrder
-    hora_agendada?: SortOrder
+    hora_agendada?: SortOrderInput | SortOrder
     status?: SortOrder
     observacao_doador?: SortOrderInput | SortOrder
     observacao_hospital?: SortOrderInput | SortOrder
@@ -25440,7 +25440,7 @@ export namespace Prisma {
     id_doador?: IntWithAggregatesFilter<"Agenda"> | number
     id_hospital?: IntWithAggregatesFilter<"Agenda"> | number
     data_agendada?: DateTimeWithAggregatesFilter<"Agenda"> | Date | string
-    hora_agendada?: DateTimeWithAggregatesFilter<"Agenda"> | Date | string
+    hora_agendada?: StringNullableWithAggregatesFilter<"Agenda"> | string | null
     status?: EnumStatusAgendaWithAggregatesFilter<"Agenda"> | $Enums.StatusAgenda
     observacao_doador?: StringNullableWithAggregatesFilter<"Agenda"> | string | null
     observacao_hospital?: StringNullableWithAggregatesFilter<"Agenda"> | string | null
@@ -26676,7 +26676,7 @@ export namespace Prisma {
 
   export type AgendaCreateInput = {
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -26691,7 +26691,7 @@ export namespace Prisma {
     id_doador: number
     id_hospital: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -26701,7 +26701,7 @@ export namespace Prisma {
 
   export type AgendaUpdateInput = {
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26716,7 +26716,7 @@ export namespace Prisma {
     id_doador?: IntFieldUpdateOperationsInput | number
     id_hospital?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26729,7 +26729,7 @@ export namespace Prisma {
     id_doador: number
     id_hospital: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -26739,7 +26739,7 @@ export namespace Prisma {
 
   export type AgendaUpdateManyMutationInput = {
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26752,7 +26752,7 @@ export namespace Prisma {
     id_doador?: IntFieldUpdateOperationsInput | number
     id_hospital?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30778,7 +30778,7 @@ export namespace Prisma {
 
   export type AgendaCreateWithoutDoadorInput = {
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -30791,7 +30791,7 @@ export namespace Prisma {
     id_agenda?: number
     id_hospital: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -31027,7 +31027,7 @@ export namespace Prisma {
     id_doador?: IntFilter<"Agenda"> | number
     id_hospital?: IntFilter<"Agenda"> | number
     data_agendada?: DateTimeFilter<"Agenda"> | Date | string
-    hora_agendada?: DateTimeFilter<"Agenda"> | Date | string
+    hora_agendada?: StringNullableFilter<"Agenda"> | string | null
     status?: EnumStatusAgendaFilter<"Agenda"> | $Enums.StatusAgenda
     observacao_doador?: StringNullableFilter<"Agenda"> | string | null
     observacao_hospital?: StringNullableFilter<"Agenda"> | string | null
@@ -31503,7 +31503,7 @@ export namespace Prisma {
 
   export type AgendaCreateWithoutHospitalInput = {
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -31516,7 +31516,7 @@ export namespace Prisma {
     id_agenda?: number
     id_doador: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -34159,7 +34159,7 @@ export namespace Prisma {
     id_agenda?: number
     id_hospital: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -34243,7 +34243,7 @@ export namespace Prisma {
 
   export type AgendaUpdateWithoutDoadorInput = {
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34256,7 +34256,7 @@ export namespace Prisma {
     id_agenda?: IntFieldUpdateOperationsInput | number
     id_hospital?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34268,7 +34268,7 @@ export namespace Prisma {
     id_agenda?: IntFieldUpdateOperationsInput | number
     id_hospital?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34383,7 +34383,7 @@ export namespace Prisma {
     id_agenda?: number
     id_doador: number
     data_agendada: Date | string
-    hora_agendada: Date | string
+    hora_agendada?: string | null
     status?: $Enums.StatusAgenda
     observacao_doador?: string | null
     observacao_hospital?: string | null
@@ -34537,7 +34537,7 @@ export namespace Prisma {
 
   export type AgendaUpdateWithoutHospitalInput = {
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34550,7 +34550,7 @@ export namespace Prisma {
     id_agenda?: IntFieldUpdateOperationsInput | number
     id_doador?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34562,7 +34562,7 @@ export namespace Prisma {
     id_agenda?: IntFieldUpdateOperationsInput | number
     id_doador?: IntFieldUpdateOperationsInput | number
     data_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
-    hora_agendada?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora_agendada?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumStatusAgendaFieldUpdateOperationsInput | $Enums.StatusAgenda
     observacao_doador?: NullableStringFieldUpdateOperationsInput | string | null
     observacao_hospital?: NullableStringFieldUpdateOperationsInput | string | null

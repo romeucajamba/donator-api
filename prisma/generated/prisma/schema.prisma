@@ -352,7 +352,7 @@ model Agenda {
   id_doador           Int
   id_hospital         Int
   data_agendada       DateTime     @db.Date
-  hora_agendada       DateTime     @db.Time
+  hora_agendada       String?
   status              StatusAgenda @default(pendente)
   observacao_doador   String?      @db.VarChar(255)
   /// Confirmação ou justificativa de rejeição pelo hospital
