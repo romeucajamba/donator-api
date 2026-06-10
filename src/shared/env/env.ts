@@ -17,6 +17,9 @@ const schemaEnv = z.object({
   CLOUDINARY_API_SECRET: z.string(),
   API_DOMAIN_COOKIE: z.string().default("localhost"),
   DONATOR_SERVER_ENV_API: z.enum(["staging", "production", "development"]).default("development"),
+  OMBALA_BASE_URL: z.string(),
+  OMBALA_API_TOKEN: z.string(),
+  OMBALA_FROM: z.string(),
 });
 
 const _env = schemaEnv.safeParse(process.env);

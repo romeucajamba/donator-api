@@ -7,6 +7,7 @@ import { pedidoFactory } from '../factories/pedidoFactory';
 import { auditoriaFactory } from '../factories/auditoriaFactory';
 import { ZodError } from 'zod';
 import { AppError } from '@/shared/error';
+import { notificarDoadores } from '@/use-cases/SMS/sender';
 
 export class PedidoController {
 
@@ -18,6 +19,12 @@ export class PedidoController {
       const result = await service.createPedido(data);
 
       const auditoria = auditoriaFactory();
+
+      // 4. Notificações em background — não bloqueia a resposta
+      notificarDoadores(data.tipo_sanguineo_necessario, data.id_hospital).catch(
+        (err) => console.error('[SMS] Erro ao notificar doadores:', err)
+      );
+
       await auditoria.createLog({
         id_hospital: data.id_hospital,
         acao: 'NOVO_PEDIDO_URGENTE',
@@ -26,6 +33,8 @@ export class PedidoController {
       });
 
       return res.status(201).json(result);
+
+      
     } catch (error: any) {
             if (error instanceof ZodError) throw AppError.badRequest('Validation failed', error.issues);
       if (error instanceof AppError) throw error;
