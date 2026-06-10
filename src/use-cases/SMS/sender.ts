@@ -17,12 +17,21 @@ const ombalaClient = axios.create({
 // ─── Enviar SMS individual ────────────────────────────────────────────────────
 
 const enviarSMS = async (telefone: string, mensagem: string): Promise<void> => {
+    try {
+  const numeroNormalizado = telefone
+      .replace(/[\+\s\-]/g, '')
+      .replace(/^0+/, '');
   await ombalaClient.post('/v1/messages', {
     message: mensagem,
     from: OMBALA_FROM,
-    to: telefone,
+    to: numeroNormalizado,
   });
-};
+} catch (error: any) {
+    console.error('[SMS] Erro detalhado:', JSON.stringify(error.response?.data, null, 2));
+    console.error('[SMS] Status:', error.response?.status);
+    console.error('[SMS] Payload:', { from: OMBALA_FROM, to: telefone });
+    throw error;
+}};
 
 // ─── Notificar doadores compatíveis ──────────────────────────────────────────
 
@@ -43,7 +52,6 @@ export async function notificarDoadores(
       tipo_sanguineo: tipo_sanguineo as any,
       consentimento_sms: true,
       status: 'ativo',
-      telefone: { not: null },
     },
     select: { telefone: true },
   });
@@ -64,8 +72,8 @@ export async function notificarDoadores(
     `A sua doação pode salvar uma vida. Dirija-se ao hospital o mais rápido possível. Obrigado!`;
 
   const numeros = doadores
-    .map((d) => d.telefone!)
-    .filter(Boolean);
+  .map((d) => d.telefone)
+  .filter((t): t is string => t !== null && t !== undefined && t.trim() !== '');
 
   console.log(`[SMS] A enviar para ${numeros.length} doadores do tipo ${tipoFormatado}...`);
 
