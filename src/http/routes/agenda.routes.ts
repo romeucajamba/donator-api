@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { AgendaController } from '../controllers/AgendaController';
-import { authMiddleware } from '../middleware/authMiddleware';
+
 
 const routes = Router();
 const controller = new AgendaController();

@@ -27,7 +27,7 @@ export class DoadorController {
       return res.status(201).json(result);
 
     } catch (error) {
-      console.error('Erro ao registrar doador:', error);
+      
       if (error instanceof ZodError) {
         const formatted = error.issues.map(err => ({
           field: err.path[0],
@@ -80,9 +80,11 @@ export class DoadorController {
     try {
       const { id } = req.params;
       const data = UpdateDoadorSchema.parse(req.body);
+      
       const service = daodorFactory();
 
       const updated = await service.updateDoador(Number(id), data);
+
       return res.status(200).json(updated);
 
     } catch (error) {

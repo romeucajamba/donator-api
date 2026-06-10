@@ -105,9 +105,14 @@ export class ComunicacaoController {
   async notifyDoador(req: Request, res: Response) {
     try {
       const data = DispatchNotificacaoSchema.parse(req.body);
+
+      console.log("Data recebida no controller:", data);
+
       const service = comunicacaoFactory();
 
       const result = await service.dispatchNotificacao(data);
+      
+      console.log("Resultado da notificação:", result);
       
       return res.status(201).json(result);
     } catch (error) {

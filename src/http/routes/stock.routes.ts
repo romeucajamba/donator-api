@@ -11,8 +11,8 @@ const controller = new StockController();
 // ======================
 routes.post('/', controller.initStock);
 routes.get('/', controller.getAllStocks);
-routes.get('/:id', controller.getStock);
 routes.get('/hospital/:id_hospital', controller.getHospitalStock);
+routes.get('/:id', controller.getStock);
 routes.put('/:id', controller.updateStock);
 routes.patch('/:id', controller.updateStockRelative);
 routes.delete('/:id', controller.deleteStock);

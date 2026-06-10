@@ -151,7 +151,7 @@ export class PedidoController {
       const { id_doador } = req.params;
       const service = pedidoFactory();
 
-      const pedidos = await service.getDoacoesByDoador(Number(id_doador));
+      const pedidos = await service.getAllDoacoesByDoador(Number(id_doador));
       if (!pedidos || pedidos.length === 0) {
         return res.status(404).json({ error: 'Nenhum pedido de doação encontrado para este doador' });
       }

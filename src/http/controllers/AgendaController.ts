@@ -17,7 +17,7 @@ export class AgendaController {
     try {
       const data = CreateAgendaSchema.parse(req.body);
       const service = agendaFactory();
-      console.log("Criando agenda com dados:", data);
+      
       const dataHora = `${data.data_agendada}T${data.hora_agendada}:00`;
 
       const result = await service.schedule({
@@ -51,6 +51,7 @@ export class AgendaController {
     try {
       const { id } = req.params;
       const data = UpdateAgendaSchema.parse(req.body);
+      console.log("Processando agenda ID:", id, "com dados:", data);
       const service = agendaFactory();
 
       const updated = await service.updateScheduleState(Number(id), data);

@@ -70,7 +70,7 @@ export class PedidoService {
     return updated;
   }
   
-  async getDoacoesByDoador(id_doador: number): Promise<PedidoDoacaoResponseDTO[]> {
+  async getAllDoacoesByDoador(id_doador: number): Promise<PedidoDoacaoResponseDTO[]> {
     const pedidos = await this.pedidoDoacaoRepository.findAllByDoador(id_doador);
     if (!pedidos.length) throw AppError.notFound('No pedidos de doação found for this doador');
     return pedidos as PedidoDoacaoResponseDTO[];

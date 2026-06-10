@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateStockSchema, RegisterMovimentoSchema, UpdateStockSchema } from '../schemas/stockSchema';
 import { stockFactory } from '../factories/stockFactory';
-import { ZodError } from 'zod';
+import z, { ZodError } from 'zod';
 import { AppError } from '@/shared/error';
 
 export class StockController {
@@ -10,15 +10,20 @@ export class StockController {
   async initStock(req: Request, res: Response) {
     try {
       const data = CreateStockSchema.parse(req.body);
+      
       const service = stockFactory();
 
       const result = await service.initializeStock(data);
       return res.status(201).json(result);
 
     } catch (error) {
-      if (error instanceof ZodError) throw AppError.badRequest('Validation failed', error.issues);
-            if (error instanceof AppError) throw error;
-            throw AppError.internal('Erro ao buscar pedidos de doação por doador', error);
+      if (error instanceof ZodError) {
+      return res.status(400).json({ message: 'Validation failed', issues: error.issues });
+    }
+    if (error instanceof AppError) {
+      return res.status(error.statusCode).json({ message: error.message });
+    }
+    return res.status(500).json({ message: 'Erro interno ao actualizar stock' });
     }
   }
 
@@ -32,19 +37,30 @@ export class StockController {
       return res.status(200).json(stock);
 
     } catch (error) {
-      if (error instanceof ZodError) throw AppError.badRequest('Validation failed', error.issues);
-            if (error instanceof AppError) throw error;
-            throw AppError.internal('Erro ao buscar stock', error);
+     if (error instanceof ZodError) {
+      return res.status(400).json({ message: 'Validation failed', issues: error.issues });
+    }
+    if (error instanceof AppError) {
+      return res.status(error.statusCode).json({ message: error.message });
+    }
+    return res.status(500).json({ message: 'Erro interno ao actualizar stock' });
     }
   }
 
   async getHospitalStock(req: Request, res: Response) {
     try {
       const { id_hospital } = req.params;
+
+      const hospitalId = Number(id_hospital);
+
+      if (Number.isNaN(hospitalId)) throw AppError.badRequest('Invalid hospital id');
+
       const service = stockFactory();
 
-      const stocks = await service.getHospitalStock(Number(id_hospital));
+      const stocks = await service.getHospitalStock(hospitalId);
+
       if (!stocks.length) throw AppError.notFound('No stock records found for this hospital');
+
       return res.status(200).json(stocks);
 
     } catch (error) {
