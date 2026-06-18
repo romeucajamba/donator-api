@@ -82,6 +82,11 @@ enum StatusPedidoEntreHospitais {
   cancelado
 }
 
+enum StatusAdmin {
+  ativo
+  inativo
+}
+
 // =============================================================
 // GEOGRAFIA — 1FN
 // provincia e municipio eram strings repetidas em Doador e Hospital.
@@ -498,6 +503,7 @@ model LogAcesso {
   id_log      Int      @id @default(autoincrement())
   id_hospital Int?
   id_doador   Int?
+  id_admin    Int?
   acao        String   @db.VarChar(50)
   descricao   String   @db.Text
   ip_origem   String   @db.VarChar(45)
@@ -505,10 +511,50 @@ model LogAcesso {
 
   hospital Hospital? @relation(fields: [id_hospital], references: [id_hospital])
   doador   Doador?   @relation(fields: [id_doador], references: [id_doador])
+  admin    Admin?    @relation(fields: [id_admin], references: [id_admin])
 
   @@index([id_hospital])
   @@index([id_doador])
+  @@index([id_admin])
   @@index([data_hora])
   @@index([acao])
   @@map("log_acesso")
+}
+
+// =============================================================
+// 14. ADMIN DO SISTEMA
+// =============================================================
+
+model Admin {
+  id_admin      Int         @id @default(autoincrement())
+  nome_completo String      @db.VarChar(100)
+  email         String      @unique @db.VarChar(80)
+  senha_hash    String      @db.VarChar(255)
+  status        StatusAdmin @default(ativo)
+  data_criacao  DateTime    @default(now())
+
+  sessoes SessaoAdminSistema[]
+  logs    LogAcesso[]
+
+  @@map("admin")
+}
+
+// =============================================================
+// 15. SESSÃO DO ADMIN DO SISTEMA
+// =============================================================
+
+model SessaoAdminSistema {
+  id_sessao      String   @id @db.VarChar(64)
+  id_admin       Int
+  ip_origem      String   @db.VarChar(45)
+  user_agent     String?  @db.VarChar(255)
+  data_login     DateTime @default(now())
+  data_expiracao DateTime
+  ativo          Boolean  @default(true)
+
+  admin Admin @relation(fields: [id_admin], references: [id_admin])
+
+  @@index([id_admin])
+  @@index([ativo])
+  @@map("sessao_admin_sistema")
 }

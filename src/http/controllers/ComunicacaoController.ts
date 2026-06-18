@@ -137,7 +137,7 @@ export class ComunicacaoController {
       const notificacoes = await service.getNotificacoesDoador(Number(id_doador));
 
       if (notificacoes.length === 0) {
-        return res.status(200).json({ message:[] });
+        return res.status(200).json([]);
       }
 
       return res.status(200).json(notificacoes);
@@ -155,7 +155,7 @@ export class ComunicacaoController {
       const result = await service.getNotificacoesPedido(Number(id_pedido));
 
       if (result.length === 0) {
-        return res.status(200).json({ message:[] });
+        return res.status(200).json([]);
       }
 
       return res.status(200).json(result);
@@ -172,7 +172,7 @@ export class ComunicacaoController {
       const result = await service.getAllNotificacoes();
 
       if (result.length === 0) {
-        return res.status(200).json({ message:[] });
+        return res.status(200).json([]);
       }
       
       return res.status(200).json(result);

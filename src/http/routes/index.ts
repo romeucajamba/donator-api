@@ -9,6 +9,7 @@ import { agendaRoutes } from './agenda.routes';
 import { comunicacaoRoutes } from './comunicacao.routes';
 import { gamificacaoRoutes } from './gamificacao.routes';
 import { auditoriaRoutes } from './auditoria.routes';
+import { adminRoutes } from './admin.routes';
 
 const router = Router();
 
@@ -21,5 +22,6 @@ router.use('/agenda', agendaRoutes);
 router.use('/comunicacao', comunicacaoRoutes);
 router.use('/gamificacao', gamificacaoRoutes);
 router.use('/auditoria', auditoriaRoutes);
+router.use('/admin', adminRoutes);
 
 export { router };

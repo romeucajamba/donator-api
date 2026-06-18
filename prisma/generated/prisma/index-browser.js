@@ -296,10 +296,30 @@ exports.Prisma.LogAcessoScalarFieldEnum = {
   id_log: 'id_log',
   id_hospital: 'id_hospital',
   id_doador: 'id_doador',
+  id_admin: 'id_admin',
   acao: 'acao',
   descricao: 'descricao',
   ip_origem: 'ip_origem',
   data_hora: 'data_hora'
+};
+
+exports.Prisma.AdminScalarFieldEnum = {
+  id_admin: 'id_admin',
+  nome_completo: 'nome_completo',
+  email: 'email',
+  senha_hash: 'senha_hash',
+  status: 'status',
+  data_criacao: 'data_criacao'
+};
+
+exports.Prisma.SessaoAdminSistemaScalarFieldEnum = {
+  id_sessao: 'id_sessao',
+  id_admin: 'id_admin',
+  ip_origem: 'ip_origem',
+  user_agent: 'user_agent',
+  data_login: 'data_login',
+  data_expiracao: 'data_expiracao',
+  ativo: 'ativo'
 };
 
 exports.Prisma.SortOrder = {
@@ -382,6 +402,11 @@ exports.StatusPedidoEntreHospitais = exports.$Enums.StatusPedidoEntreHospitais =
   cancelado: 'cancelado'
 };
 
+exports.StatusAdmin = exports.$Enums.StatusAdmin = {
+  ativo: 'ativo',
+  inativo: 'inativo'
+};
+
 exports.Prisma.ModelName = {
   Provincia: 'Provincia',
   Municipio: 'Municipio',
@@ -400,7 +425,9 @@ exports.Prisma.ModelName = {
   PedidoEntreHospitais: 'PedidoEntreHospitais',
   SessaoAdmin: 'SessaoAdmin',
   SessaoDoador: 'SessaoDoador',
-  LogAcesso: 'LogAcesso'
+  LogAcesso: 'LogAcesso',
+  Admin: 'Admin',
+  SessaoAdminSistema: 'SessaoAdminSistema'
 };
 
 /**

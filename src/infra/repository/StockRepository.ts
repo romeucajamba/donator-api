@@ -34,12 +34,17 @@ export class StockRepository implements IStockRepository {
   }
 
   async findAllByHospital(id_hospital: number): Promise<Stock[]> {
-    const s = await prisma.stock.findMany({ where: { id_hospital } });
+    const s = await prisma.stock.findMany({ 
+      where: { id_hospital },
+      orderBy: { tipo_sanguineo: 'asc' }
+    });
     return s as unknown as Stock[];
   }
 
   async findAll(): Promise<Stock[]> {
-    const s = await prisma.stock.findMany();
+    const s = await prisma.stock.findMany({
+      orderBy: { id_stock: 'asc' }
+    });
     return s as unknown as Stock[];
   }
 

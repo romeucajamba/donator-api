@@ -12,7 +12,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
 // =============================================================
 // ENUMS
 // =============================================================
@@ -35,6 +34,7 @@ enum StatusDoador {
 }
 
 enum StatusHospital {
+  pendente
   ativo
   suspenso
   inativo
@@ -57,11 +57,11 @@ enum StatusNotificacao {
 }
 
 enum StatusAgenda {
-  pendente    // aguardando avaliação do hospital
-  confirmada  // hospital confirmou
-  rejeitada   // hospital rejeitou
-  concluida   // doação realizada
-  cancelada   // doador cancelou
+  pendente // aguardando avaliação do hospital
+  confirmada // hospital confirmou
+  rejeitada // hospital rejeitou
+  concluida // doação realizada
+  cancelada // doador cancelou
 }
 
 enum StatusPedidoDoacao {
@@ -83,6 +83,11 @@ enum StatusPedidoEntreHospitais {
   cancelado
 }
 
+enum StatusAdmin {
+  ativo
+  inativo
+}
+
 // =============================================================
 // GEOGRAFIA — 1FN
 // provincia e municipio eram strings repetidas em Doador e Hospital.
@@ -90,10 +95,10 @@ enum StatusPedidoEntreHospitais {
 // =============================================================
 
 model Provincia {
-  id_provincia  Int         @id @default(autoincrement())
-  nome          String      @unique @db.VarChar(50)
+  id_provincia Int    @id @default(autoincrement())
+  nome         String @unique @db.VarChar(50)
 
-  municipios    Municipio[]
+  municipios Municipio[]
 
   @@map("provincia")
 }
@@ -101,14 +106,14 @@ model Provincia {
 // Municipio depende apenas de id_municipio (2FN ok).
 // nome pode repetir entre províncias → chave única composta.
 model Municipio {
-  id_municipio  Int       @id @default(autoincrement())
-  id_provincia  Int
-  nome          String    @db.VarChar(60)
+  id_municipio Int    @id @default(autoincrement())
+  id_provincia Int
+  nome         String @db.VarChar(60)
 
-  provincia  Provincia @relation(fields: [id_provincia], references: [id_provincia])
-  doadores   Doador[]
-  hospitais  Hospital[]
-  pedidos    Pedido[]
+  provincia Provincia  @relation(fields: [id_provincia], references: [id_provincia])
+  doadores  Doador[]
+  hospitais Hospital[]
+  pedidos   Pedido[]
 
   @@unique([id_provincia, nome])
   @@index([id_provincia])
@@ -123,10 +128,10 @@ model Municipio {
 // =============================================================
 
 model RegraClassificacao {
-  id_regra          Int    @id @default(autoincrement())
-  nome_nivel        String @unique @db.VarChar(20)
-  pontuacao_minima  Int
-  pontuacao_maxima  Int?   // NULL = sem teto (elite)
+  id_regra         Int    @id @default(autoincrement())
+  nome_nivel       String @unique @db.VarChar(20)
+  pontuacao_minima Int
+  pontuacao_maxima Int? // NULL = sem teto (elite)
 
   @@map("regra_classificacao")
 }
@@ -151,14 +156,14 @@ model Doador {
   status            StatusDoador  @default(ativo)
   consentimento_sms Boolean       @default(true)
 
-  municipio         Municipio          @relation(fields: [id_municipio], references: [id_municipio])
-  estatisticas      EstatisticaDoador?
-  historicoDoacoes  HistoricoDoacao[]
-  notificacoes      Notificacao[]
-  agendamentos      Agenda[]
-  pedidosDoacoes    PedidoDoacao[]
-  sessoes           SessaoDoador[]
-  logs              LogAcesso[]
+  municipio        Municipio          @relation(fields: [id_municipio], references: [id_municipio])
+  estatisticas     EstatisticaDoador?
+  historicoDoacoes HistoricoDoacao[]
+  notificacoes     Notificacao[]
+  agendamentos     Agenda[]
+  pedidosDoacoes   PedidoDoacao[]
+  sessoes          SessaoDoador[]
+  logs             LogAcesso[]
 
   @@index([tipo_sanguineo])
   @@index([id_municipio])
@@ -173,14 +178,14 @@ model Doador {
 // =============================================================
 
 model HistoricoDoacao {
-  id_historico  Int      @id @default(autoincrement())
-  id_doador     Int
-  id_hospital   Int
-  data_doacao   DateTime @db.Date
-  observacao    String?  @db.VarChar(255)
+  id_historico Int      @id @default(autoincrement())
+  id_doador    Int
+  id_hospital  Int
+  data_doacao  DateTime @db.Date
+  observacao   String?  @db.VarChar(255)
 
-  doador    Doador   @relation(fields: [id_doador],   references: [id_doador])
-  hospital  Hospital @relation(fields: [id_hospital], references: [id_hospital])
+  doador   Doador   @relation(fields: [id_doador], references: [id_doador])
+  hospital Hospital @relation(fields: [id_hospital], references: [id_hospital])
 
   @@index([id_doador])
   @@index([id_hospital])
@@ -207,7 +212,7 @@ model EstatisticaDoador {
   pontuacao          Int      @default(0)
   ultima_atualizacao DateTime @default(now()) @updatedAt
 
-  doador  Doador @relation(fields: [id_doador], references: [id_doador], onDelete: Cascade)
+  doador Doador @relation(fields: [id_doador], references: [id_doador], onDelete: Cascade)
 
   @@map("estatistica_doador")
 }
@@ -228,20 +233,20 @@ model Hospital {
   email         String         @unique @db.VarChar(80)
   senha_hash    String         @db.VarChar(255)
   data_cadastro DateTime       @default(now())
-  status        StatusHospital @default(ativo)
+  status        StatusHospital @default(pendente)
 
-  municipio              Municipio              @relation(fields: [id_municipio], references: [id_municipio])
-  pedidos                Pedido[]
-  stocks                 Stock[]
-  agendamentos           Agenda[]
-  pedidosDoacoes         PedidoDoacao[]
-  historicosDoacoes      HistoricoDoacao[]
-  sessoes                SessaoAdmin[]
-  logs                   LogAcesso[]
-  mensagensEnviadas      Mensagem[]             @relation("Remetente")
-  mensagensRecebidas     Mensagem[]             @relation("Destinatario")
-  pedidosEntreEnviados   PedidoEntreHospitais[] @relation("HospitalSolicitante")
-  pedidosEntreRecebidos  PedidoEntreHospitais[] @relation("HospitalFornecedor")
+  municipio             Municipio              @relation(fields: [id_municipio], references: [id_municipio])
+  pedidos               Pedido[]
+  stocks                Stock[]
+  agendamentos          Agenda[]
+  pedidosDoacoes        PedidoDoacao[]
+  historicosDoacoes     HistoricoDoacao[]
+  sessoes               SessaoAdmin[]
+  logs                  LogAcesso[]
+  mensagensEnviadas     Mensagem[]             @relation("Remetente")
+  mensagensRecebidas    Mensagem[]             @relation("Destinatario")
+  pedidosEntreEnviados  PedidoEntreHospitais[] @relation("HospitalSolicitante")
+  pedidosEntreRecebidos PedidoEntreHospitais[] @relation("HospitalFornecedor")
 
   @@index([id_municipio])
   @@map("hospital")
@@ -261,8 +266,8 @@ model Stock {
   quantidade_bolsas  Int           @default(0)
   ultima_atualizacao DateTime      @default(now()) @updatedAt
 
-  hospital    Hospital         @relation(fields: [id_hospital], references: [id_hospital], onDelete: Cascade)
-  movimentos  MovimentoStock[]
+  hospital   Hospital         @relation(fields: [id_hospital], references: [id_hospital], onDelete: Cascade)
+  movimentos MovimentoStock[]
 
   @@unique([id_hospital, tipo_sanguineo])
   @@index([id_hospital])
@@ -272,14 +277,14 @@ model Stock {
 // Cada linha = um evento de incremento ou decremento.
 // Todos os campos dependem apenas de id_movimento (2FN/3FN ok).
 model MovimentoStock {
-  id_movimento    Int      @id @default(autoincrement())
-  id_stock        Int
+  id_movimento   Int      @id @default(autoincrement())
+  id_stock       Int
   /// Positivo = entrada de bolsas; negativo = consumo/saída
-  quantidade      Int
-  observacao      String?  @db.VarChar(255)
-  data_movimento  DateTime @default(now())
+  quantidade     Int
+  observacao     String?  @db.VarChar(255)
+  data_movimento DateTime @default(now())
 
-  stock  Stock @relation(fields: [id_stock], references: [id_stock], onDelete: Cascade)
+  stock Stock @relation(fields: [id_stock], references: [id_stock], onDelete: Cascade)
 
   @@index([id_stock])
   @@index([data_movimento])
@@ -306,9 +311,9 @@ model Pedido {
   /// Cache: COUNT(Notificacao) WHERE id_pedido = X
   total_notificados         Int           @default(0)
 
-  hospital         Hospital      @relation(fields: [id_hospital],         references: [id_hospital])
-  municipioPedido  Municipio     @relation(fields: [id_municipio_pedido], references: [id_municipio])
-  notificacoes     Notificacao[]
+  hospital        Hospital      @relation(fields: [id_hospital], references: [id_hospital])
+  municipioPedido Municipio     @relation(fields: [id_municipio_pedido], references: [id_municipio])
+  notificacoes    Notificacao[]
 
   @@index([tipo_sanguineo_necessario])
   @@index([status_pedido])
@@ -322,18 +327,18 @@ model Pedido {
 // =============================================================
 
 model PedidoDoacao {
-  id_pedido_doacao  Int                @id @default(autoincrement())
-  id_doador         Int
-  id_hospital       Int
-  mensagem          String?            @db.VarChar(255)
-  status            StatusPedidoDoacao @default(pendente)
+  id_pedido_doacao Int                @id @default(autoincrement())
+  id_doador        Int
+  id_hospital      Int
+  mensagem         String?            @db.VarChar(255)
+  status           StatusPedidoDoacao @default(pendente)
   /// Preenchido pelo hospital ao rejeitar
-  motivo_rejeicao   String?            @db.VarChar(255)
-  data_solicitacao  DateTime           @default(now())
-  data_resposta     DateTime?
+  motivo_rejeicao  String?            @db.VarChar(255)
+  data_solicitacao DateTime           @default(now())
+  data_resposta    DateTime?
 
-  doador    Doador   @relation(fields: [id_doador],   references: [id_doador])
-  hospital  Hospital @relation(fields: [id_hospital], references: [id_hospital])
+  doador   Doador   @relation(fields: [id_doador], references: [id_doador])
+  hospital Hospital @relation(fields: [id_hospital], references: [id_hospital])
 
   @@index([id_doador])
   @@index([id_hospital])
@@ -361,8 +366,8 @@ model Agenda {
   data_criacao        DateTime     @default(now())
   data_atualizacao    DateTime     @updatedAt
 
-  doador    Doador   @relation(fields: [id_doador],   references: [id_doador])
-  hospital  Hospital @relation(fields: [id_hospital], references: [id_hospital])
+  doador   Doador   @relation(fields: [id_doador], references: [id_doador])
+  hospital Hospital @relation(fields: [id_hospital], references: [id_hospital])
 
   @@index([id_doador])
   @@index([id_hospital])
@@ -387,8 +392,8 @@ model Notificacao {
   /// Código retornado pelo gateway SMS em caso de falha
   codigo_erro      String?           @db.VarChar(50)
 
-  pedido  Pedido @relation(fields: [id_pedido], references: [id_pedido])
-  doador  Doador @relation(fields: [id_doador], references: [id_doador])
+  pedido Pedido @relation(fields: [id_pedido], references: [id_pedido])
+  doador Doador @relation(fields: [id_doador], references: [id_doador])
 
   @@index([id_pedido])
   @@index([id_doador])
@@ -415,7 +420,7 @@ model Mensagem {
   data_envio      DateTime       @default(now())
   data_leitura    DateTime?
 
-  remetente    Hospital              @relation("Remetente",    fields: [id_remetente],    references: [id_hospital])
+  remetente    Hospital              @relation("Remetente", fields: [id_remetente], references: [id_hospital])
   destinatario Hospital              @relation("Destinatario", fields: [id_destinatario], references: [id_hospital])
   pedidoEntre  PedidoEntreHospitais? @relation(fields: [id_pedido_entre], references: [id_pedido_entre])
 
@@ -439,9 +444,9 @@ model PedidoEntreHospitais {
   data_solicitacao  DateTime                   @default(now())
   data_resposta     DateTime?
 
-  solicitante  Hospital   @relation("HospitalSolicitante", fields: [id_solicitante], references: [id_hospital])
-  fornecedor   Hospital   @relation("HospitalFornecedor",  fields: [id_fornecedor],  references: [id_hospital])
-  mensagens    Mensagem[]
+  solicitante Hospital   @relation("HospitalSolicitante", fields: [id_solicitante], references: [id_hospital])
+  fornecedor  Hospital   @relation("HospitalFornecedor", fields: [id_fornecedor], references: [id_hospital])
+  mensagens   Mensagem[]
 
   @@index([id_solicitante])
   @@index([id_fornecedor])
@@ -462,7 +467,7 @@ model SessaoAdmin {
   data_expiracao DateTime
   ativo          Boolean  @default(true)
 
-  hospital  Hospital @relation(fields: [id_hospital], references: [id_hospital])
+  hospital Hospital @relation(fields: [id_hospital], references: [id_hospital])
 
   @@index([id_hospital])
   @@index([ativo])
@@ -483,7 +488,7 @@ model SessaoDoador {
   data_expiracao DateTime
   ativo          Boolean  @default(true)
 
-  doador  Doador @relation(fields: [id_doador], references: [id_doador])
+  doador Doador @relation(fields: [id_doador], references: [id_doador])
 
   @@index([id_doador])
   @@index([ativo])
@@ -499,17 +504,58 @@ model LogAcesso {
   id_log      Int      @id @default(autoincrement())
   id_hospital Int?
   id_doador   Int?
+  id_admin    Int?
   acao        String   @db.VarChar(50)
   descricao   String   @db.Text
   ip_origem   String   @db.VarChar(45)
   data_hora   DateTime @default(now())
 
-  hospital  Hospital? @relation(fields: [id_hospital], references: [id_hospital])
-  doador    Doador?   @relation(fields: [id_doador],   references: [id_doador])
+  hospital Hospital? @relation(fields: [id_hospital], references: [id_hospital])
+  doador   Doador?   @relation(fields: [id_doador], references: [id_doador])
+  admin    Admin?    @relation(fields: [id_admin], references: [id_admin])
 
   @@index([id_hospital])
   @@index([id_doador])
+  @@index([id_admin])
   @@index([data_hora])
   @@index([acao])
   @@map("log_acesso")
+}
+
+// =============================================================
+// 14. ADMIN DO SISTEMA
+// =============================================================
+
+model Admin {
+  id_admin      Int         @id @default(autoincrement())
+  nome_completo String      @db.VarChar(100)
+  email         String      @unique @db.VarChar(80)
+  senha_hash    String      @db.VarChar(255)
+  status        StatusAdmin @default(ativo)
+  data_criacao  DateTime    @default(now())
+
+  sessoes SessaoAdminSistema[]
+  logs    LogAcesso[]
+
+  @@map("admin")
+}
+
+// =============================================================
+// 15. SESSÃO DO ADMIN DO SISTEMA
+// =============================================================
+
+model SessaoAdminSistema {
+  id_sessao      String   @id @db.VarChar(64)
+  id_admin       Int
+  ip_origem      String   @db.VarChar(45)
+  user_agent     String?  @db.VarChar(255)
+  data_login     DateTime @default(now())
+  data_expiracao DateTime
+  ativo          Boolean  @default(true)
+
+  admin Admin @relation(fields: [id_admin], references: [id_admin])
+
+  @@index([id_admin])
+  @@index([ativo])
+  @@map("sessao_admin_sistema")
 }

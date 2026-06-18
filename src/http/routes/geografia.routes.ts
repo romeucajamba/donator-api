@@ -1,47 +1,48 @@
 import { Router } from 'express';
 import { GeografiaController } from '../controllers/GeografiaController';
-import { authMiddleware } from '../middleware/authMiddleware';
+import { ensureAdminAuthenticated } from '../middleware/ensureAdminAuthenticated';
 
 const routes = Router();
 const controller = new GeografiaController();
+
 // ======================
 // PROVÍNCIAS
 // ======================
 
-// Criar
-routes.post('/provincias', controller.createProvincia);
+// Criar (Apenas Admin)
+routes.post('/provincias', ensureAdminAuthenticated, controller.createProvincia);
 
-// Listar todas
+// Listar todas (Público - usado no registo de utilizadores)
 routes.get('/provincias', controller.getAllProvincias);
 
-// Buscar por ID
+// Buscar por ID (Público)
 routes.get('/provincias/:id', controller.getProvinciaById);
 
-// Atualizar
-routes.put('/provincias/:id', controller.updateProvincia);
+// Atualizar (Apenas Admin)
+routes.put('/provincias/:id', ensureAdminAuthenticated, controller.updateProvincia);
 
-// Deletar
-routes.delete('/provincias/:id', controller.deleteProvincia);
+// Deletar (Apenas Admin)
+routes.delete('/provincias/:id', ensureAdminAuthenticated, controller.deleteProvincia);
 
 
 // ======================
 // MUNICÍPIOS
 // ======================
 
-// Criar
-routes.post('/municipios', controller.createMunicipio);
+// Criar (Apenas Admin)
+routes.post('/municipios', ensureAdminAuthenticated, controller.createMunicipio);
 
-// Listar todos
+// Listar todos (Público)
 routes.get('/municipios', controller.getAllMunicipios);
 
-// Buscar por ID
+// Buscar por ID (Público)
 routes.get('/municipios/:id', controller.getMunicipioById);
 
-// Atualizar
-routes.put('/municipios/:id', controller.updateMunicipio);
+// Atualizar (Apenas Admin)
+routes.put('/municipios/:id', ensureAdminAuthenticated, controller.updateMunicipio);
 
-// Deletar
-routes.delete('/municipios/:id', controller.deleteMunicipio);
+// Deletar (Apenas Admin)
+routes.delete('/municipios/:id', ensureAdminAuthenticated, controller.deleteMunicipio);
 
 
 export { routes as geografiaRoutes };

@@ -95,3 +95,11 @@ A arquitetura foi desenhada com foco em **escalabilidade, segurança, modularida
 
 ```bash
 docker compose up -d
+
+### 🐳 Rodar o prisma
+
+```bash
+npx prisma migrate dev
+
+```bash
+npx prisma generate

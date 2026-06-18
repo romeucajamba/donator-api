@@ -63,3 +63,8 @@ export enum StatusPedidoEntreHospitais {
   rejeitado = 'rejeitado',
   cancelado = 'cancelado'
 }
+
+export enum StatusAdmin {
+  ativo = 'ativo',
+  inativo = 'inativo'
+}

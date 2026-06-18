@@ -103,6 +103,16 @@ export type SessaoDoador = $Result.DefaultSelection<Prisma.$SessaoDoadorPayload>
  * 
  */
 export type LogAcesso = $Result.DefaultSelection<Prisma.$LogAcessoPayload>
+/**
+ * Model Admin
+ * 
+ */
+export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
+/**
+ * Model SessaoAdminSistema
+ * 
+ */
+export type SessaoAdminSistema = $Result.DefaultSelection<Prisma.$SessaoAdminSistemaPayload>
 
 /**
  * Enums
@@ -203,6 +213,14 @@ export const StatusPedidoEntreHospitais: {
 
 export type StatusPedidoEntreHospitais = (typeof StatusPedidoEntreHospitais)[keyof typeof StatusPedidoEntreHospitais]
 
+
+export const StatusAdmin: {
+  ativo: 'ativo',
+  inativo: 'inativo'
+};
+
+export type StatusAdmin = (typeof StatusAdmin)[keyof typeof StatusAdmin]
+
 }
 
 export type TipoSanguineo = $Enums.TipoSanguineo
@@ -244,6 +262,10 @@ export const StatusMensagem: typeof $Enums.StatusMensagem
 export type StatusPedidoEntreHospitais = $Enums.StatusPedidoEntreHospitais
 
 export const StatusPedidoEntreHospitais: typeof $Enums.StatusPedidoEntreHospitais
+
+export type StatusAdmin = $Enums.StatusAdmin
+
+export const StatusAdmin: typeof $Enums.StatusAdmin
 
 /**
  * ##  Prisma Client ʲˢ
@@ -545,6 +567,26 @@ export class PrismaClient<
     * ```
     */
   get logAcesso(): Prisma.LogAcessoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.admin`: Exposes CRUD operations for the **Admin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Admins
+    * const admins = await prisma.admin.findMany()
+    * ```
+    */
+  get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sessaoAdminSistema`: Exposes CRUD operations for the **SessaoAdminSistema** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SessaoAdminSistemas
+    * const sessaoAdminSistemas = await prisma.sessaoAdminSistema.findMany()
+    * ```
+    */
+  get sessaoAdminSistema(): Prisma.SessaoAdminSistemaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -996,7 +1038,9 @@ export namespace Prisma {
     PedidoEntreHospitais: 'PedidoEntreHospitais',
     SessaoAdmin: 'SessaoAdmin',
     SessaoDoador: 'SessaoDoador',
-    LogAcesso: 'LogAcesso'
+    LogAcesso: 'LogAcesso',
+    Admin: 'Admin',
+    SessaoAdminSistema: 'SessaoAdminSistema'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1012,7 +1056,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "provincia" | "municipio" | "regraClassificacao" | "doador" | "historicoDoacao" | "estatisticaDoador" | "hospital" | "stock" | "movimentoStock" | "pedido" | "pedidoDoacao" | "agenda" | "notificacao" | "mensagem" | "pedidoEntreHospitais" | "sessaoAdmin" | "sessaoDoador" | "logAcesso"
+      modelProps: "provincia" | "municipio" | "regraClassificacao" | "doador" | "historicoDoacao" | "estatisticaDoador" | "hospital" | "stock" | "movimentoStock" | "pedido" | "pedidoDoacao" | "agenda" | "notificacao" | "mensagem" | "pedidoEntreHospitais" | "sessaoAdmin" | "sessaoDoador" | "logAcesso" | "admin" | "sessaoAdminSistema"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2348,6 +2392,154 @@ export namespace Prisma {
           }
         }
       }
+      Admin: {
+        payload: Prisma.$AdminPayload<ExtArgs>
+        fields: Prisma.AdminFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findMany: {
+            args: Prisma.AdminFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          create: {
+            args: Prisma.AdminCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          createMany: {
+            args: Prisma.AdminCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AdminCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          delete: {
+            args: Prisma.AdminDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          update: {
+            args: Prisma.AdminUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AdminUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          upsert: {
+            args: Prisma.AdminUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdmin>
+          }
+          groupBy: {
+            args: Prisma.AdminGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminCountAggregateOutputType> | number
+          }
+        }
+      }
+      SessaoAdminSistema: {
+        payload: Prisma.$SessaoAdminSistemaPayload<ExtArgs>
+        fields: Prisma.SessaoAdminSistemaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SessaoAdminSistemaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SessaoAdminSistemaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          findFirst: {
+            args: Prisma.SessaoAdminSistemaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SessaoAdminSistemaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          findMany: {
+            args: Prisma.SessaoAdminSistemaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>[]
+          }
+          create: {
+            args: Prisma.SessaoAdminSistemaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          createMany: {
+            args: Prisma.SessaoAdminSistemaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SessaoAdminSistemaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>[]
+          }
+          delete: {
+            args: Prisma.SessaoAdminSistemaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          update: {
+            args: Prisma.SessaoAdminSistemaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          deleteMany: {
+            args: Prisma.SessaoAdminSistemaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SessaoAdminSistemaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SessaoAdminSistemaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>[]
+          }
+          upsert: {
+            args: Prisma.SessaoAdminSistemaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SessaoAdminSistemaPayload>
+          }
+          aggregate: {
+            args: Prisma.SessaoAdminSistemaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSessaoAdminSistema>
+          }
+          groupBy: {
+            args: Prisma.SessaoAdminSistemaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SessaoAdminSistemaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SessaoAdminSistemaCountArgs<ExtArgs>
+            result: $Utils.Optional<SessaoAdminSistemaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2474,6 +2666,8 @@ export namespace Prisma {
     sessaoAdmin?: SessaoAdminOmit
     sessaoDoador?: SessaoDoadorOmit
     logAcesso?: LogAcessoOmit
+    admin?: AdminOmit
+    sessaoAdminSistema?: SessaoAdminSistemaOmit
   }
 
   /* Types for Logging */
@@ -2916,6 +3110,46 @@ export namespace Prisma {
    */
   export type PedidoEntreHospitaisCountOutputTypeCountMensagensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MensagemWhereInput
+  }
+
+
+  /**
+   * Count Type AdminCountOutputType
+   */
+
+  export type AdminCountOutputType = {
+    sessoes: number
+    logs: number
+  }
+
+  export type AdminCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sessoes?: boolean | AdminCountOutputTypeCountSessoesArgs
+    logs?: boolean | AdminCountOutputTypeCountLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminCountOutputType
+     */
+    select?: AdminCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountSessoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessaoAdminSistemaWhereInput
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LogAcessoWhereInput
   }
 
 
@@ -22928,18 +23162,21 @@ export namespace Prisma {
     id_log: number | null
     id_hospital: number | null
     id_doador: number | null
+    id_admin: number | null
   }
 
   export type LogAcessoSumAggregateOutputType = {
     id_log: number | null
     id_hospital: number | null
     id_doador: number | null
+    id_admin: number | null
   }
 
   export type LogAcessoMinAggregateOutputType = {
     id_log: number | null
     id_hospital: number | null
     id_doador: number | null
+    id_admin: number | null
     acao: string | null
     descricao: string | null
     ip_origem: string | null
@@ -22950,6 +23187,7 @@ export namespace Prisma {
     id_log: number | null
     id_hospital: number | null
     id_doador: number | null
+    id_admin: number | null
     acao: string | null
     descricao: string | null
     ip_origem: string | null
@@ -22960,6 +23198,7 @@ export namespace Prisma {
     id_log: number
     id_hospital: number
     id_doador: number
+    id_admin: number
     acao: number
     descricao: number
     ip_origem: number
@@ -22972,18 +23211,21 @@ export namespace Prisma {
     id_log?: true
     id_hospital?: true
     id_doador?: true
+    id_admin?: true
   }
 
   export type LogAcessoSumAggregateInputType = {
     id_log?: true
     id_hospital?: true
     id_doador?: true
+    id_admin?: true
   }
 
   export type LogAcessoMinAggregateInputType = {
     id_log?: true
     id_hospital?: true
     id_doador?: true
+    id_admin?: true
     acao?: true
     descricao?: true
     ip_origem?: true
@@ -22994,6 +23236,7 @@ export namespace Prisma {
     id_log?: true
     id_hospital?: true
     id_doador?: true
+    id_admin?: true
     acao?: true
     descricao?: true
     ip_origem?: true
@@ -23004,6 +23247,7 @@ export namespace Prisma {
     id_log?: true
     id_hospital?: true
     id_doador?: true
+    id_admin?: true
     acao?: true
     descricao?: true
     ip_origem?: true
@@ -23101,6 +23345,7 @@ export namespace Prisma {
     id_log: number
     id_hospital: number | null
     id_doador: number | null
+    id_admin: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -23130,60 +23375,70 @@ export namespace Prisma {
     id_log?: boolean
     id_hospital?: boolean
     id_doador?: boolean
+    id_admin?: boolean
     acao?: boolean
     descricao?: boolean
     ip_origem?: boolean
     data_hora?: boolean
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }, ExtArgs["result"]["logAcesso"]>
 
   export type LogAcessoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_log?: boolean
     id_hospital?: boolean
     id_doador?: boolean
+    id_admin?: boolean
     acao?: boolean
     descricao?: boolean
     ip_origem?: boolean
     data_hora?: boolean
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }, ExtArgs["result"]["logAcesso"]>
 
   export type LogAcessoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_log?: boolean
     id_hospital?: boolean
     id_doador?: boolean
+    id_admin?: boolean
     acao?: boolean
     descricao?: boolean
     ip_origem?: boolean
     data_hora?: boolean
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }, ExtArgs["result"]["logAcesso"]>
 
   export type LogAcessoSelectScalar = {
     id_log?: boolean
     id_hospital?: boolean
     id_doador?: boolean
+    id_admin?: boolean
     acao?: boolean
     descricao?: boolean
     ip_origem?: boolean
     data_hora?: boolean
   }
 
-  export type LogAcessoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_log" | "id_hospital" | "id_doador" | "acao" | "descricao" | "ip_origem" | "data_hora", ExtArgs["result"]["logAcesso"]>
+  export type LogAcessoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_log" | "id_hospital" | "id_doador" | "id_admin" | "acao" | "descricao" | "ip_origem" | "data_hora", ExtArgs["result"]["logAcesso"]>
   export type LogAcessoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }
   export type LogAcessoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }
   export type LogAcessoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     hospital?: boolean | LogAcesso$hospitalArgs<ExtArgs>
     doador?: boolean | LogAcesso$doadorArgs<ExtArgs>
+    admin?: boolean | LogAcesso$adminArgs<ExtArgs>
   }
 
   export type $LogAcessoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -23191,11 +23446,13 @@ export namespace Prisma {
     objects: {
       hospital: Prisma.$HospitalPayload<ExtArgs> | null
       doador: Prisma.$DoadorPayload<ExtArgs> | null
+      admin: Prisma.$AdminPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id_log: number
       id_hospital: number | null
       id_doador: number | null
+      id_admin: number | null
       acao: string
       descricao: string
       ip_origem: string
@@ -23596,6 +23853,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     hospital<T extends LogAcesso$hospitalArgs<ExtArgs> = {}>(args?: Subset<T, LogAcesso$hospitalArgs<ExtArgs>>): Prisma__HospitalClient<$Result.GetResult<Prisma.$HospitalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     doador<T extends LogAcesso$doadorArgs<ExtArgs> = {}>(args?: Subset<T, LogAcesso$doadorArgs<ExtArgs>>): Prisma__DoadorClient<$Result.GetResult<Prisma.$DoadorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    admin<T extends LogAcesso$adminArgs<ExtArgs> = {}>(args?: Subset<T, LogAcesso$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -23628,6 +23886,7 @@ export namespace Prisma {
     readonly id_log: FieldRef<"LogAcesso", 'Int'>
     readonly id_hospital: FieldRef<"LogAcesso", 'Int'>
     readonly id_doador: FieldRef<"LogAcesso", 'Int'>
+    readonly id_admin: FieldRef<"LogAcesso", 'Int'>
     readonly acao: FieldRef<"LogAcesso", 'String'>
     readonly descricao: FieldRef<"LogAcesso", 'String'>
     readonly ip_origem: FieldRef<"LogAcesso", 'String'>
@@ -24071,6 +24330,25 @@ export namespace Prisma {
   }
 
   /**
+   * LogAcesso.admin
+   */
+  export type LogAcesso$adminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    where?: AdminWhereInput
+  }
+
+  /**
    * LogAcesso without action
    */
   export type LogAcessoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -24086,6 +24364,2279 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LogAcessoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Admin
+   */
+
+  export type AggregateAdmin = {
+    _count: AdminCountAggregateOutputType | null
+    _avg: AdminAvgAggregateOutputType | null
+    _sum: AdminSumAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  export type AdminAvgAggregateOutputType = {
+    id_admin: number | null
+  }
+
+  export type AdminSumAggregateOutputType = {
+    id_admin: number | null
+  }
+
+  export type AdminMinAggregateOutputType = {
+    id_admin: number | null
+    nome_completo: string | null
+    email: string | null
+    senha_hash: string | null
+    status: $Enums.StatusAdmin | null
+    data_criacao: Date | null
+  }
+
+  export type AdminMaxAggregateOutputType = {
+    id_admin: number | null
+    nome_completo: string | null
+    email: string | null
+    senha_hash: string | null
+    status: $Enums.StatusAdmin | null
+    data_criacao: Date | null
+  }
+
+  export type AdminCountAggregateOutputType = {
+    id_admin: number
+    nome_completo: number
+    email: number
+    senha_hash: number
+    status: number
+    data_criacao: number
+    _all: number
+  }
+
+
+  export type AdminAvgAggregateInputType = {
+    id_admin?: true
+  }
+
+  export type AdminSumAggregateInputType = {
+    id_admin?: true
+  }
+
+  export type AdminMinAggregateInputType = {
+    id_admin?: true
+    nome_completo?: true
+    email?: true
+    senha_hash?: true
+    status?: true
+    data_criacao?: true
+  }
+
+  export type AdminMaxAggregateInputType = {
+    id_admin?: true
+    nome_completo?: true
+    email?: true
+    senha_hash?: true
+    status?: true
+    data_criacao?: true
+  }
+
+  export type AdminCountAggregateInputType = {
+    id_admin?: true
+    nome_completo?: true
+    email?: true
+    senha_hash?: true
+    status?: true
+    data_criacao?: true
+    _all?: true
+  }
+
+  export type AdminAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admin to aggregate.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Admins
+    **/
+    _count?: true | AdminCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdminAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdminSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type GetAdminAggregateType<T extends AdminAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdmin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdmin[P]>
+      : GetScalarType<T[P], AggregateAdmin[P]>
+  }
+
+
+
+
+  export type AdminGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminWhereInput
+    orderBy?: AdminOrderByWithAggregationInput | AdminOrderByWithAggregationInput[]
+    by: AdminScalarFieldEnum[] | AdminScalarFieldEnum
+    having?: AdminScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminCountAggregateInputType | true
+    _avg?: AdminAvgAggregateInputType
+    _sum?: AdminSumAggregateInputType
+    _min?: AdminMinAggregateInputType
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type AdminGroupByOutputType = {
+    id_admin: number
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status: $Enums.StatusAdmin
+    data_criacao: Date
+    _count: AdminCountAggregateOutputType | null
+    _avg: AdminAvgAggregateOutputType | null
+    _sum: AdminSumAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  type GetAdminGroupByPayload<T extends AdminGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_admin?: boolean
+    nome_completo?: boolean
+    email?: boolean
+    senha_hash?: boolean
+    status?: boolean
+    data_criacao?: boolean
+    sessoes?: boolean | Admin$sessoesArgs<ExtArgs>
+    logs?: boolean | Admin$logsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_admin?: boolean
+    nome_completo?: boolean
+    email?: boolean
+    senha_hash?: boolean
+    status?: boolean
+    data_criacao?: boolean
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_admin?: boolean
+    nome_completo?: boolean
+    email?: boolean
+    senha_hash?: boolean
+    status?: boolean
+    data_criacao?: boolean
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectScalar = {
+    id_admin?: boolean
+    nome_completo?: boolean
+    email?: boolean
+    senha_hash?: boolean
+    status?: boolean
+    data_criacao?: boolean
+  }
+
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_admin" | "nome_completo" | "email" | "senha_hash" | "status" | "data_criacao", ExtArgs["result"]["admin"]>
+  export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    sessoes?: boolean | Admin$sessoesArgs<ExtArgs>
+    logs?: boolean | Admin$logsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Admin"
+    objects: {
+      sessoes: Prisma.$SessaoAdminSistemaPayload<ExtArgs>[]
+      logs: Prisma.$LogAcessoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_admin: number
+      nome_completo: string
+      email: string
+      senha_hash: string
+      status: $Enums.StatusAdmin
+      data_criacao: Date
+    }, ExtArgs["result"]["admin"]>
+    composites: {}
+  }
+
+  type AdminGetPayload<S extends boolean | null | undefined | AdminDefaultArgs> = $Result.GetResult<Prisma.$AdminPayload, S>
+
+  type AdminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminCountAggregateInputType | true
+    }
+
+  export interface AdminDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Admin'], meta: { name: 'Admin' } }
+    /**
+     * Find zero or one Admin that matches the filter.
+     * @param {AdminFindUniqueArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdminFindUniqueArgs>(args: SelectSubset<T, AdminFindUniqueArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Admin that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdminFindUniqueOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdminFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Admin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdminFindFirstArgs>(args?: SelectSubset<T, AdminFindFirstArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Admin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdminFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Admins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Admins
+     * const admins = await prisma.admin.findMany()
+     * 
+     * // Get first 10 Admins
+     * const admins = await prisma.admin.findMany({ take: 10 })
+     * 
+     * // Only select the `id_admin`
+     * const adminWithId_adminOnly = await prisma.admin.findMany({ select: { id_admin: true } })
+     * 
+     */
+    findMany<T extends AdminFindManyArgs>(args?: SelectSubset<T, AdminFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Admin.
+     * @param {AdminCreateArgs} args - Arguments to create a Admin.
+     * @example
+     * // Create one Admin
+     * const Admin = await prisma.admin.create({
+     *   data: {
+     *     // ... data to create a Admin
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdminCreateArgs>(args: SelectSubset<T, AdminCreateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Admins.
+     * @param {AdminCreateManyArgs} args - Arguments to create many Admins.
+     * @example
+     * // Create many Admins
+     * const admin = await prisma.admin.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdminCreateManyArgs>(args?: SelectSubset<T, AdminCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Admins and returns the data saved in the database.
+     * @param {AdminCreateManyAndReturnArgs} args - Arguments to create many Admins.
+     * @example
+     * // Create many Admins
+     * const admin = await prisma.admin.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Admins and only return the `id_admin`
+     * const adminWithId_adminOnly = await prisma.admin.createManyAndReturn({
+     *   select: { id_admin: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AdminCreateManyAndReturnArgs>(args?: SelectSubset<T, AdminCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Admin.
+     * @param {AdminDeleteArgs} args - Arguments to delete one Admin.
+     * @example
+     * // Delete one Admin
+     * const Admin = await prisma.admin.delete({
+     *   where: {
+     *     // ... filter to delete one Admin
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdminDeleteArgs>(args: SelectSubset<T, AdminDeleteArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Admin.
+     * @param {AdminUpdateArgs} args - Arguments to update one Admin.
+     * @example
+     * // Update one Admin
+     * const admin = await prisma.admin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdminUpdateArgs>(args: SelectSubset<T, AdminUpdateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Admins.
+     * @param {AdminDeleteManyArgs} args - Arguments to filter Admins to delete.
+     * @example
+     * // Delete a few Admins
+     * const { count } = await prisma.admin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdminDeleteManyArgs>(args?: SelectSubset<T, AdminDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Admins
+     * const admin = await prisma.admin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdminUpdateManyArgs>(args: SelectSubset<T, AdminUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Admins and returns the data updated in the database.
+     * @param {AdminUpdateManyAndReturnArgs} args - Arguments to update many Admins.
+     * @example
+     * // Update many Admins
+     * const admin = await prisma.admin.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Admins and only return the `id_admin`
+     * const adminWithId_adminOnly = await prisma.admin.updateManyAndReturn({
+     *   select: { id_admin: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AdminUpdateManyAndReturnArgs>(args: SelectSubset<T, AdminUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Admin.
+     * @param {AdminUpsertArgs} args - Arguments to update or create a Admin.
+     * @example
+     * // Update or create a Admin
+     * const admin = await prisma.admin.upsert({
+     *   create: {
+     *     // ... data to create a Admin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Admin we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdminUpsertArgs>(args: SelectSubset<T, AdminUpsertArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminCountArgs} args - Arguments to filter Admins to count.
+     * @example
+     * // Count the number of Admins
+     * const count = await prisma.admin.count({
+     *   where: {
+     *     // ... the filter for the Admins we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminCountArgs>(
+      args?: Subset<T, AdminCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminAggregateArgs>(args: Subset<T, AdminAggregateArgs>): Prisma.PrismaPromise<GetAdminAggregateType<T>>
+
+    /**
+     * Group by Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminGroupByArgs['orderBy'] }
+        : { orderBy?: AdminGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Admin model
+   */
+  readonly fields: AdminFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Admin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    sessoes<T extends Admin$sessoesArgs<ExtArgs> = {}>(args?: Subset<T, Admin$sessoesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    logs<T extends Admin$logsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LogAcessoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Admin model
+   */
+  interface AdminFieldRefs {
+    readonly id_admin: FieldRef<"Admin", 'Int'>
+    readonly nome_completo: FieldRef<"Admin", 'String'>
+    readonly email: FieldRef<"Admin", 'String'>
+    readonly senha_hash: FieldRef<"Admin", 'String'>
+    readonly status: FieldRef<"Admin", 'StatusAdmin'>
+    readonly data_criacao: FieldRef<"Admin", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Admin findUnique
+   */
+  export type AdminFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin findUniqueOrThrow
+   */
+  export type AdminFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin findFirst
+   */
+  export type AdminFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin findFirstOrThrow
+   */
+  export type AdminFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin findMany
+   */
+  export type AdminFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admins to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin create
+   */
+  export type AdminCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Admin.
+     */
+    data: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+  }
+
+  /**
+   * Admin createMany
+   */
+  export type AdminCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Admins.
+     */
+    data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Admin createManyAndReturn
+   */
+  export type AdminCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * The data used to create many Admins.
+     */
+    data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Admin update
+   */
+  export type AdminUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Admin.
+     */
+    data: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+    /**
+     * Choose, which Admin to update.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin updateMany
+   */
+  export type AdminUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Admins.
+     */
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
+    /**
+     * Filter which Admins to update
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin updateManyAndReturn
+   */
+  export type AdminUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * The data used to update Admins.
+     */
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
+    /**
+     * Filter which Admins to update
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin upsert
+   */
+  export type AdminUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Admin to update in case it exists.
+     */
+    where: AdminWhereUniqueInput
+    /**
+     * In case the Admin found by the `where` argument doesn't exist, create a new Admin with this data.
+     */
+    create: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+    /**
+     * In case the Admin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+  }
+
+  /**
+   * Admin delete
+   */
+  export type AdminDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter which Admin to delete.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin deleteMany
+   */
+  export type AdminDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admins to delete
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin.sessoes
+   */
+  export type Admin$sessoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    where?: SessaoAdminSistemaWhereInput
+    orderBy?: SessaoAdminSistemaOrderByWithRelationInput | SessaoAdminSistemaOrderByWithRelationInput[]
+    cursor?: SessaoAdminSistemaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessaoAdminSistemaScalarFieldEnum | SessaoAdminSistemaScalarFieldEnum[]
+  }
+
+  /**
+   * Admin.logs
+   */
+  export type Admin$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LogAcesso
+     */
+    select?: LogAcessoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LogAcesso
+     */
+    omit?: LogAcessoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LogAcessoInclude<ExtArgs> | null
+    where?: LogAcessoWhereInput
+    orderBy?: LogAcessoOrderByWithRelationInput | LogAcessoOrderByWithRelationInput[]
+    cursor?: LogAcessoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LogAcessoScalarFieldEnum | LogAcessoScalarFieldEnum[]
+  }
+
+  /**
+   * Admin without action
+   */
+  export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SessaoAdminSistema
+   */
+
+  export type AggregateSessaoAdminSistema = {
+    _count: SessaoAdminSistemaCountAggregateOutputType | null
+    _avg: SessaoAdminSistemaAvgAggregateOutputType | null
+    _sum: SessaoAdminSistemaSumAggregateOutputType | null
+    _min: SessaoAdminSistemaMinAggregateOutputType | null
+    _max: SessaoAdminSistemaMaxAggregateOutputType | null
+  }
+
+  export type SessaoAdminSistemaAvgAggregateOutputType = {
+    id_admin: number | null
+  }
+
+  export type SessaoAdminSistemaSumAggregateOutputType = {
+    id_admin: number | null
+  }
+
+  export type SessaoAdminSistemaMinAggregateOutputType = {
+    id_sessao: string | null
+    id_admin: number | null
+    ip_origem: string | null
+    user_agent: string | null
+    data_login: Date | null
+    data_expiracao: Date | null
+    ativo: boolean | null
+  }
+
+  export type SessaoAdminSistemaMaxAggregateOutputType = {
+    id_sessao: string | null
+    id_admin: number | null
+    ip_origem: string | null
+    user_agent: string | null
+    data_login: Date | null
+    data_expiracao: Date | null
+    ativo: boolean | null
+  }
+
+  export type SessaoAdminSistemaCountAggregateOutputType = {
+    id_sessao: number
+    id_admin: number
+    ip_origem: number
+    user_agent: number
+    data_login: number
+    data_expiracao: number
+    ativo: number
+    _all: number
+  }
+
+
+  export type SessaoAdminSistemaAvgAggregateInputType = {
+    id_admin?: true
+  }
+
+  export type SessaoAdminSistemaSumAggregateInputType = {
+    id_admin?: true
+  }
+
+  export type SessaoAdminSistemaMinAggregateInputType = {
+    id_sessao?: true
+    id_admin?: true
+    ip_origem?: true
+    user_agent?: true
+    data_login?: true
+    data_expiracao?: true
+    ativo?: true
+  }
+
+  export type SessaoAdminSistemaMaxAggregateInputType = {
+    id_sessao?: true
+    id_admin?: true
+    ip_origem?: true
+    user_agent?: true
+    data_login?: true
+    data_expiracao?: true
+    ativo?: true
+  }
+
+  export type SessaoAdminSistemaCountAggregateInputType = {
+    id_sessao?: true
+    id_admin?: true
+    ip_origem?: true
+    user_agent?: true
+    data_login?: true
+    data_expiracao?: true
+    ativo?: true
+    _all?: true
+  }
+
+  export type SessaoAdminSistemaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SessaoAdminSistema to aggregate.
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessaoAdminSistemas to fetch.
+     */
+    orderBy?: SessaoAdminSistemaOrderByWithRelationInput | SessaoAdminSistemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SessaoAdminSistemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessaoAdminSistemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessaoAdminSistemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SessaoAdminSistemas
+    **/
+    _count?: true | SessaoAdminSistemaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SessaoAdminSistemaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SessaoAdminSistemaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SessaoAdminSistemaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SessaoAdminSistemaMaxAggregateInputType
+  }
+
+  export type GetSessaoAdminSistemaAggregateType<T extends SessaoAdminSistemaAggregateArgs> = {
+        [P in keyof T & keyof AggregateSessaoAdminSistema]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSessaoAdminSistema[P]>
+      : GetScalarType<T[P], AggregateSessaoAdminSistema[P]>
+  }
+
+
+
+
+  export type SessaoAdminSistemaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessaoAdminSistemaWhereInput
+    orderBy?: SessaoAdminSistemaOrderByWithAggregationInput | SessaoAdminSistemaOrderByWithAggregationInput[]
+    by: SessaoAdminSistemaScalarFieldEnum[] | SessaoAdminSistemaScalarFieldEnum
+    having?: SessaoAdminSistemaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SessaoAdminSistemaCountAggregateInputType | true
+    _avg?: SessaoAdminSistemaAvgAggregateInputType
+    _sum?: SessaoAdminSistemaSumAggregateInputType
+    _min?: SessaoAdminSistemaMinAggregateInputType
+    _max?: SessaoAdminSistemaMaxAggregateInputType
+  }
+
+  export type SessaoAdminSistemaGroupByOutputType = {
+    id_sessao: string
+    id_admin: number
+    ip_origem: string
+    user_agent: string | null
+    data_login: Date
+    data_expiracao: Date
+    ativo: boolean
+    _count: SessaoAdminSistemaCountAggregateOutputType | null
+    _avg: SessaoAdminSistemaAvgAggregateOutputType | null
+    _sum: SessaoAdminSistemaSumAggregateOutputType | null
+    _min: SessaoAdminSistemaMinAggregateOutputType | null
+    _max: SessaoAdminSistemaMaxAggregateOutputType | null
+  }
+
+  type GetSessaoAdminSistemaGroupByPayload<T extends SessaoAdminSistemaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SessaoAdminSistemaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SessaoAdminSistemaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SessaoAdminSistemaGroupByOutputType[P]>
+            : GetScalarType<T[P], SessaoAdminSistemaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SessaoAdminSistemaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_sessao?: boolean
+    id_admin?: boolean
+    ip_origem?: boolean
+    user_agent?: boolean
+    data_login?: boolean
+    data_expiracao?: boolean
+    ativo?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sessaoAdminSistema"]>
+
+  export type SessaoAdminSistemaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_sessao?: boolean
+    id_admin?: boolean
+    ip_origem?: boolean
+    user_agent?: boolean
+    data_login?: boolean
+    data_expiracao?: boolean
+    ativo?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sessaoAdminSistema"]>
+
+  export type SessaoAdminSistemaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_sessao?: boolean
+    id_admin?: boolean
+    ip_origem?: boolean
+    user_agent?: boolean
+    data_login?: boolean
+    data_expiracao?: boolean
+    ativo?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sessaoAdminSistema"]>
+
+  export type SessaoAdminSistemaSelectScalar = {
+    id_sessao?: boolean
+    id_admin?: boolean
+    ip_origem?: boolean
+    user_agent?: boolean
+    data_login?: boolean
+    data_expiracao?: boolean
+    ativo?: boolean
+  }
+
+  export type SessaoAdminSistemaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_sessao" | "id_admin" | "ip_origem" | "user_agent" | "data_login" | "data_expiracao" | "ativo", ExtArgs["result"]["sessaoAdminSistema"]>
+  export type SessaoAdminSistemaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type SessaoAdminSistemaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type SessaoAdminSistemaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+
+  export type $SessaoAdminSistemaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SessaoAdminSistema"
+    objects: {
+      admin: Prisma.$AdminPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_sessao: string
+      id_admin: number
+      ip_origem: string
+      user_agent: string | null
+      data_login: Date
+      data_expiracao: Date
+      ativo: boolean
+    }, ExtArgs["result"]["sessaoAdminSistema"]>
+    composites: {}
+  }
+
+  type SessaoAdminSistemaGetPayload<S extends boolean | null | undefined | SessaoAdminSistemaDefaultArgs> = $Result.GetResult<Prisma.$SessaoAdminSistemaPayload, S>
+
+  type SessaoAdminSistemaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SessaoAdminSistemaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SessaoAdminSistemaCountAggregateInputType | true
+    }
+
+  export interface SessaoAdminSistemaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SessaoAdminSistema'], meta: { name: 'SessaoAdminSistema' } }
+    /**
+     * Find zero or one SessaoAdminSistema that matches the filter.
+     * @param {SessaoAdminSistemaFindUniqueArgs} args - Arguments to find a SessaoAdminSistema
+     * @example
+     * // Get one SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SessaoAdminSistemaFindUniqueArgs>(args: SelectSubset<T, SessaoAdminSistemaFindUniqueArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SessaoAdminSistema that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SessaoAdminSistemaFindUniqueOrThrowArgs} args - Arguments to find a SessaoAdminSistema
+     * @example
+     * // Get one SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SessaoAdminSistemaFindUniqueOrThrowArgs>(args: SelectSubset<T, SessaoAdminSistemaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SessaoAdminSistema that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaFindFirstArgs} args - Arguments to find a SessaoAdminSistema
+     * @example
+     * // Get one SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SessaoAdminSistemaFindFirstArgs>(args?: SelectSubset<T, SessaoAdminSistemaFindFirstArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SessaoAdminSistema that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaFindFirstOrThrowArgs} args - Arguments to find a SessaoAdminSistema
+     * @example
+     * // Get one SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SessaoAdminSistemaFindFirstOrThrowArgs>(args?: SelectSubset<T, SessaoAdminSistemaFindFirstOrThrowArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SessaoAdminSistemas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SessaoAdminSistemas
+     * const sessaoAdminSistemas = await prisma.sessaoAdminSistema.findMany()
+     * 
+     * // Get first 10 SessaoAdminSistemas
+     * const sessaoAdminSistemas = await prisma.sessaoAdminSistema.findMany({ take: 10 })
+     * 
+     * // Only select the `id_sessao`
+     * const sessaoAdminSistemaWithId_sessaoOnly = await prisma.sessaoAdminSistema.findMany({ select: { id_sessao: true } })
+     * 
+     */
+    findMany<T extends SessaoAdminSistemaFindManyArgs>(args?: SelectSubset<T, SessaoAdminSistemaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SessaoAdminSistema.
+     * @param {SessaoAdminSistemaCreateArgs} args - Arguments to create a SessaoAdminSistema.
+     * @example
+     * // Create one SessaoAdminSistema
+     * const SessaoAdminSistema = await prisma.sessaoAdminSistema.create({
+     *   data: {
+     *     // ... data to create a SessaoAdminSistema
+     *   }
+     * })
+     * 
+     */
+    create<T extends SessaoAdminSistemaCreateArgs>(args: SelectSubset<T, SessaoAdminSistemaCreateArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SessaoAdminSistemas.
+     * @param {SessaoAdminSistemaCreateManyArgs} args - Arguments to create many SessaoAdminSistemas.
+     * @example
+     * // Create many SessaoAdminSistemas
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SessaoAdminSistemaCreateManyArgs>(args?: SelectSubset<T, SessaoAdminSistemaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SessaoAdminSistemas and returns the data saved in the database.
+     * @param {SessaoAdminSistemaCreateManyAndReturnArgs} args - Arguments to create many SessaoAdminSistemas.
+     * @example
+     * // Create many SessaoAdminSistemas
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SessaoAdminSistemas and only return the `id_sessao`
+     * const sessaoAdminSistemaWithId_sessaoOnly = await prisma.sessaoAdminSistema.createManyAndReturn({
+     *   select: { id_sessao: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SessaoAdminSistemaCreateManyAndReturnArgs>(args?: SelectSubset<T, SessaoAdminSistemaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SessaoAdminSistema.
+     * @param {SessaoAdminSistemaDeleteArgs} args - Arguments to delete one SessaoAdminSistema.
+     * @example
+     * // Delete one SessaoAdminSistema
+     * const SessaoAdminSistema = await prisma.sessaoAdminSistema.delete({
+     *   where: {
+     *     // ... filter to delete one SessaoAdminSistema
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SessaoAdminSistemaDeleteArgs>(args: SelectSubset<T, SessaoAdminSistemaDeleteArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SessaoAdminSistema.
+     * @param {SessaoAdminSistemaUpdateArgs} args - Arguments to update one SessaoAdminSistema.
+     * @example
+     * // Update one SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SessaoAdminSistemaUpdateArgs>(args: SelectSubset<T, SessaoAdminSistemaUpdateArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SessaoAdminSistemas.
+     * @param {SessaoAdminSistemaDeleteManyArgs} args - Arguments to filter SessaoAdminSistemas to delete.
+     * @example
+     * // Delete a few SessaoAdminSistemas
+     * const { count } = await prisma.sessaoAdminSistema.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SessaoAdminSistemaDeleteManyArgs>(args?: SelectSubset<T, SessaoAdminSistemaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SessaoAdminSistemas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SessaoAdminSistemas
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SessaoAdminSistemaUpdateManyArgs>(args: SelectSubset<T, SessaoAdminSistemaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SessaoAdminSistemas and returns the data updated in the database.
+     * @param {SessaoAdminSistemaUpdateManyAndReturnArgs} args - Arguments to update many SessaoAdminSistemas.
+     * @example
+     * // Update many SessaoAdminSistemas
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SessaoAdminSistemas and only return the `id_sessao`
+     * const sessaoAdminSistemaWithId_sessaoOnly = await prisma.sessaoAdminSistema.updateManyAndReturn({
+     *   select: { id_sessao: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SessaoAdminSistemaUpdateManyAndReturnArgs>(args: SelectSubset<T, SessaoAdminSistemaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SessaoAdminSistema.
+     * @param {SessaoAdminSistemaUpsertArgs} args - Arguments to update or create a SessaoAdminSistema.
+     * @example
+     * // Update or create a SessaoAdminSistema
+     * const sessaoAdminSistema = await prisma.sessaoAdminSistema.upsert({
+     *   create: {
+     *     // ... data to create a SessaoAdminSistema
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SessaoAdminSistema we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SessaoAdminSistemaUpsertArgs>(args: SelectSubset<T, SessaoAdminSistemaUpsertArgs<ExtArgs>>): Prisma__SessaoAdminSistemaClient<$Result.GetResult<Prisma.$SessaoAdminSistemaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SessaoAdminSistemas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaCountArgs} args - Arguments to filter SessaoAdminSistemas to count.
+     * @example
+     * // Count the number of SessaoAdminSistemas
+     * const count = await prisma.sessaoAdminSistema.count({
+     *   where: {
+     *     // ... the filter for the SessaoAdminSistemas we want to count
+     *   }
+     * })
+    **/
+    count<T extends SessaoAdminSistemaCountArgs>(
+      args?: Subset<T, SessaoAdminSistemaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SessaoAdminSistemaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SessaoAdminSistema.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SessaoAdminSistemaAggregateArgs>(args: Subset<T, SessaoAdminSistemaAggregateArgs>): Prisma.PrismaPromise<GetSessaoAdminSistemaAggregateType<T>>
+
+    /**
+     * Group by SessaoAdminSistema.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessaoAdminSistemaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SessaoAdminSistemaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SessaoAdminSistemaGroupByArgs['orderBy'] }
+        : { orderBy?: SessaoAdminSistemaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SessaoAdminSistemaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessaoAdminSistemaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SessaoAdminSistema model
+   */
+  readonly fields: SessaoAdminSistemaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SessaoAdminSistema.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SessaoAdminSistemaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SessaoAdminSistema model
+   */
+  interface SessaoAdminSistemaFieldRefs {
+    readonly id_sessao: FieldRef<"SessaoAdminSistema", 'String'>
+    readonly id_admin: FieldRef<"SessaoAdminSistema", 'Int'>
+    readonly ip_origem: FieldRef<"SessaoAdminSistema", 'String'>
+    readonly user_agent: FieldRef<"SessaoAdminSistema", 'String'>
+    readonly data_login: FieldRef<"SessaoAdminSistema", 'DateTime'>
+    readonly data_expiracao: FieldRef<"SessaoAdminSistema", 'DateTime'>
+    readonly ativo: FieldRef<"SessaoAdminSistema", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SessaoAdminSistema findUnique
+   */
+  export type SessaoAdminSistemaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter, which SessaoAdminSistema to fetch.
+     */
+    where: SessaoAdminSistemaWhereUniqueInput
+  }
+
+  /**
+   * SessaoAdminSistema findUniqueOrThrow
+   */
+  export type SessaoAdminSistemaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter, which SessaoAdminSistema to fetch.
+     */
+    where: SessaoAdminSistemaWhereUniqueInput
+  }
+
+  /**
+   * SessaoAdminSistema findFirst
+   */
+  export type SessaoAdminSistemaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter, which SessaoAdminSistema to fetch.
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessaoAdminSistemas to fetch.
+     */
+    orderBy?: SessaoAdminSistemaOrderByWithRelationInput | SessaoAdminSistemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SessaoAdminSistemas.
+     */
+    cursor?: SessaoAdminSistemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessaoAdminSistemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessaoAdminSistemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SessaoAdminSistemas.
+     */
+    distinct?: SessaoAdminSistemaScalarFieldEnum | SessaoAdminSistemaScalarFieldEnum[]
+  }
+
+  /**
+   * SessaoAdminSistema findFirstOrThrow
+   */
+  export type SessaoAdminSistemaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter, which SessaoAdminSistema to fetch.
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessaoAdminSistemas to fetch.
+     */
+    orderBy?: SessaoAdminSistemaOrderByWithRelationInput | SessaoAdminSistemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SessaoAdminSistemas.
+     */
+    cursor?: SessaoAdminSistemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessaoAdminSistemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessaoAdminSistemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SessaoAdminSistemas.
+     */
+    distinct?: SessaoAdminSistemaScalarFieldEnum | SessaoAdminSistemaScalarFieldEnum[]
+  }
+
+  /**
+   * SessaoAdminSistema findMany
+   */
+  export type SessaoAdminSistemaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter, which SessaoAdminSistemas to fetch.
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessaoAdminSistemas to fetch.
+     */
+    orderBy?: SessaoAdminSistemaOrderByWithRelationInput | SessaoAdminSistemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SessaoAdminSistemas.
+     */
+    cursor?: SessaoAdminSistemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessaoAdminSistemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessaoAdminSistemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SessaoAdminSistemas.
+     */
+    distinct?: SessaoAdminSistemaScalarFieldEnum | SessaoAdminSistemaScalarFieldEnum[]
+  }
+
+  /**
+   * SessaoAdminSistema create
+   */
+  export type SessaoAdminSistemaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SessaoAdminSistema.
+     */
+    data: XOR<SessaoAdminSistemaCreateInput, SessaoAdminSistemaUncheckedCreateInput>
+  }
+
+  /**
+   * SessaoAdminSistema createMany
+   */
+  export type SessaoAdminSistemaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SessaoAdminSistemas.
+     */
+    data: SessaoAdminSistemaCreateManyInput | SessaoAdminSistemaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SessaoAdminSistema createManyAndReturn
+   */
+  export type SessaoAdminSistemaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * The data used to create many SessaoAdminSistemas.
+     */
+    data: SessaoAdminSistemaCreateManyInput | SessaoAdminSistemaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SessaoAdminSistema update
+   */
+  export type SessaoAdminSistemaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SessaoAdminSistema.
+     */
+    data: XOR<SessaoAdminSistemaUpdateInput, SessaoAdminSistemaUncheckedUpdateInput>
+    /**
+     * Choose, which SessaoAdminSistema to update.
+     */
+    where: SessaoAdminSistemaWhereUniqueInput
+  }
+
+  /**
+   * SessaoAdminSistema updateMany
+   */
+  export type SessaoAdminSistemaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SessaoAdminSistemas.
+     */
+    data: XOR<SessaoAdminSistemaUpdateManyMutationInput, SessaoAdminSistemaUncheckedUpdateManyInput>
+    /**
+     * Filter which SessaoAdminSistemas to update
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * Limit how many SessaoAdminSistemas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SessaoAdminSistema updateManyAndReturn
+   */
+  export type SessaoAdminSistemaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * The data used to update SessaoAdminSistemas.
+     */
+    data: XOR<SessaoAdminSistemaUpdateManyMutationInput, SessaoAdminSistemaUncheckedUpdateManyInput>
+    /**
+     * Filter which SessaoAdminSistemas to update
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * Limit how many SessaoAdminSistemas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SessaoAdminSistema upsert
+   */
+  export type SessaoAdminSistemaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SessaoAdminSistema to update in case it exists.
+     */
+    where: SessaoAdminSistemaWhereUniqueInput
+    /**
+     * In case the SessaoAdminSistema found by the `where` argument doesn't exist, create a new SessaoAdminSistema with this data.
+     */
+    create: XOR<SessaoAdminSistemaCreateInput, SessaoAdminSistemaUncheckedCreateInput>
+    /**
+     * In case the SessaoAdminSistema was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SessaoAdminSistemaUpdateInput, SessaoAdminSistemaUncheckedUpdateInput>
+  }
+
+  /**
+   * SessaoAdminSistema delete
+   */
+  export type SessaoAdminSistemaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
+    /**
+     * Filter which SessaoAdminSistema to delete.
+     */
+    where: SessaoAdminSistemaWhereUniqueInput
+  }
+
+  /**
+   * SessaoAdminSistema deleteMany
+   */
+  export type SessaoAdminSistemaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SessaoAdminSistemas to delete
+     */
+    where?: SessaoAdminSistemaWhereInput
+    /**
+     * Limit how many SessaoAdminSistemas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SessaoAdminSistema without action
+   */
+  export type SessaoAdminSistemaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessaoAdminSistema
+     */
+    select?: SessaoAdminSistemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SessaoAdminSistema
+     */
+    omit?: SessaoAdminSistemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessaoAdminSistemaInclude<ExtArgs> | null
   }
 
 
@@ -24330,6 +26881,7 @@ export namespace Prisma {
     id_log: 'id_log',
     id_hospital: 'id_hospital',
     id_doador: 'id_doador',
+    id_admin: 'id_admin',
     acao: 'acao',
     descricao: 'descricao',
     ip_origem: 'ip_origem',
@@ -24337,6 +26889,31 @@ export namespace Prisma {
   };
 
   export type LogAcessoScalarFieldEnum = (typeof LogAcessoScalarFieldEnum)[keyof typeof LogAcessoScalarFieldEnum]
+
+
+  export const AdminScalarFieldEnum: {
+    id_admin: 'id_admin',
+    nome_completo: 'nome_completo',
+    email: 'email',
+    senha_hash: 'senha_hash',
+    status: 'status',
+    data_criacao: 'data_criacao'
+  };
+
+  export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const SessaoAdminSistemaScalarFieldEnum: {
+    id_sessao: 'id_sessao',
+    id_admin: 'id_admin',
+    ip_origem: 'ip_origem',
+    user_agent: 'user_agent',
+    data_login: 'data_login',
+    data_expiracao: 'data_expiracao',
+    ativo: 'ativo'
+  };
+
+  export type SessaoAdminSistemaScalarFieldEnum = (typeof SessaoAdminSistemaScalarFieldEnum)[keyof typeof SessaoAdminSistemaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -24554,6 +27131,20 @@ export namespace Prisma {
    * Reference to a field of type 'StatusPedidoEntreHospitais[]'
    */
   export type ListEnumStatusPedidoEntreHospitaisFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusPedidoEntreHospitais[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAdmin'
+   */
+  export type EnumStatusAdminFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAdmin'>
+    
+
+
+  /**
+   * Reference to a field of type 'StatusAdmin[]'
+   */
+  export type ListEnumStatusAdminFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusAdmin[]'>
     
 
 
@@ -25825,24 +28416,28 @@ export namespace Prisma {
     id_log?: IntFilter<"LogAcesso"> | number
     id_hospital?: IntNullableFilter<"LogAcesso"> | number | null
     id_doador?: IntNullableFilter<"LogAcesso"> | number | null
+    id_admin?: IntNullableFilter<"LogAcesso"> | number | null
     acao?: StringFilter<"LogAcesso"> | string
     descricao?: StringFilter<"LogAcesso"> | string
     ip_origem?: StringFilter<"LogAcesso"> | string
     data_hora?: DateTimeFilter<"LogAcesso"> | Date | string
     hospital?: XOR<HospitalNullableScalarRelationFilter, HospitalWhereInput> | null
     doador?: XOR<DoadorNullableScalarRelationFilter, DoadorWhereInput> | null
+    admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
   }
 
   export type LogAcessoOrderByWithRelationInput = {
     id_log?: SortOrder
     id_hospital?: SortOrderInput | SortOrder
     id_doador?: SortOrderInput | SortOrder
+    id_admin?: SortOrderInput | SortOrder
     acao?: SortOrder
     descricao?: SortOrder
     ip_origem?: SortOrder
     data_hora?: SortOrder
     hospital?: HospitalOrderByWithRelationInput
     doador?: DoadorOrderByWithRelationInput
+    admin?: AdminOrderByWithRelationInput
   }
 
   export type LogAcessoWhereUniqueInput = Prisma.AtLeast<{
@@ -25852,18 +28447,21 @@ export namespace Prisma {
     NOT?: LogAcessoWhereInput | LogAcessoWhereInput[]
     id_hospital?: IntNullableFilter<"LogAcesso"> | number | null
     id_doador?: IntNullableFilter<"LogAcesso"> | number | null
+    id_admin?: IntNullableFilter<"LogAcesso"> | number | null
     acao?: StringFilter<"LogAcesso"> | string
     descricao?: StringFilter<"LogAcesso"> | string
     ip_origem?: StringFilter<"LogAcesso"> | string
     data_hora?: DateTimeFilter<"LogAcesso"> | Date | string
     hospital?: XOR<HospitalNullableScalarRelationFilter, HospitalWhereInput> | null
     doador?: XOR<DoadorNullableScalarRelationFilter, DoadorWhereInput> | null
+    admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
   }, "id_log">
 
   export type LogAcessoOrderByWithAggregationInput = {
     id_log?: SortOrder
     id_hospital?: SortOrderInput | SortOrder
     id_doador?: SortOrderInput | SortOrder
+    id_admin?: SortOrderInput | SortOrder
     acao?: SortOrder
     descricao?: SortOrder
     ip_origem?: SortOrder
@@ -25882,10 +28480,143 @@ export namespace Prisma {
     id_log?: IntWithAggregatesFilter<"LogAcesso"> | number
     id_hospital?: IntNullableWithAggregatesFilter<"LogAcesso"> | number | null
     id_doador?: IntNullableWithAggregatesFilter<"LogAcesso"> | number | null
+    id_admin?: IntNullableWithAggregatesFilter<"LogAcesso"> | number | null
     acao?: StringWithAggregatesFilter<"LogAcesso"> | string
     descricao?: StringWithAggregatesFilter<"LogAcesso"> | string
     ip_origem?: StringWithAggregatesFilter<"LogAcesso"> | string
     data_hora?: DateTimeWithAggregatesFilter<"LogAcesso"> | Date | string
+  }
+
+  export type AdminWhereInput = {
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    id_admin?: IntFilter<"Admin"> | number
+    nome_completo?: StringFilter<"Admin"> | string
+    email?: StringFilter<"Admin"> | string
+    senha_hash?: StringFilter<"Admin"> | string
+    status?: EnumStatusAdminFilter<"Admin"> | $Enums.StatusAdmin
+    data_criacao?: DateTimeFilter<"Admin"> | Date | string
+    sessoes?: SessaoAdminSistemaListRelationFilter
+    logs?: LogAcessoListRelationFilter
+  }
+
+  export type AdminOrderByWithRelationInput = {
+    id_admin?: SortOrder
+    nome_completo?: SortOrder
+    email?: SortOrder
+    senha_hash?: SortOrder
+    status?: SortOrder
+    data_criacao?: SortOrder
+    sessoes?: SessaoAdminSistemaOrderByRelationAggregateInput
+    logs?: LogAcessoOrderByRelationAggregateInput
+  }
+
+  export type AdminWhereUniqueInput = Prisma.AtLeast<{
+    id_admin?: number
+    email?: string
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    nome_completo?: StringFilter<"Admin"> | string
+    senha_hash?: StringFilter<"Admin"> | string
+    status?: EnumStatusAdminFilter<"Admin"> | $Enums.StatusAdmin
+    data_criacao?: DateTimeFilter<"Admin"> | Date | string
+    sessoes?: SessaoAdminSistemaListRelationFilter
+    logs?: LogAcessoListRelationFilter
+  }, "id_admin" | "email">
+
+  export type AdminOrderByWithAggregationInput = {
+    id_admin?: SortOrder
+    nome_completo?: SortOrder
+    email?: SortOrder
+    senha_hash?: SortOrder
+    status?: SortOrder
+    data_criacao?: SortOrder
+    _count?: AdminCountOrderByAggregateInput
+    _avg?: AdminAvgOrderByAggregateInput
+    _max?: AdminMaxOrderByAggregateInput
+    _min?: AdminMinOrderByAggregateInput
+    _sum?: AdminSumOrderByAggregateInput
+  }
+
+  export type AdminScalarWhereWithAggregatesInput = {
+    AND?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    OR?: AdminScalarWhereWithAggregatesInput[]
+    NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    id_admin?: IntWithAggregatesFilter<"Admin"> | number
+    nome_completo?: StringWithAggregatesFilter<"Admin"> | string
+    email?: StringWithAggregatesFilter<"Admin"> | string
+    senha_hash?: StringWithAggregatesFilter<"Admin"> | string
+    status?: EnumStatusAdminWithAggregatesFilter<"Admin"> | $Enums.StatusAdmin
+    data_criacao?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
+  }
+
+  export type SessaoAdminSistemaWhereInput = {
+    AND?: SessaoAdminSistemaWhereInput | SessaoAdminSistemaWhereInput[]
+    OR?: SessaoAdminSistemaWhereInput[]
+    NOT?: SessaoAdminSistemaWhereInput | SessaoAdminSistemaWhereInput[]
+    id_sessao?: StringFilter<"SessaoAdminSistema"> | string
+    id_admin?: IntFilter<"SessaoAdminSistema"> | number
+    ip_origem?: StringFilter<"SessaoAdminSistema"> | string
+    user_agent?: StringNullableFilter<"SessaoAdminSistema"> | string | null
+    data_login?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    data_expiracao?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    ativo?: BoolFilter<"SessaoAdminSistema"> | boolean
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }
+
+  export type SessaoAdminSistemaOrderByWithRelationInput = {
+    id_sessao?: SortOrder
+    id_admin?: SortOrder
+    ip_origem?: SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    data_login?: SortOrder
+    data_expiracao?: SortOrder
+    ativo?: SortOrder
+    admin?: AdminOrderByWithRelationInput
+  }
+
+  export type SessaoAdminSistemaWhereUniqueInput = Prisma.AtLeast<{
+    id_sessao?: string
+    AND?: SessaoAdminSistemaWhereInput | SessaoAdminSistemaWhereInput[]
+    OR?: SessaoAdminSistemaWhereInput[]
+    NOT?: SessaoAdminSistemaWhereInput | SessaoAdminSistemaWhereInput[]
+    id_admin?: IntFilter<"SessaoAdminSistema"> | number
+    ip_origem?: StringFilter<"SessaoAdminSistema"> | string
+    user_agent?: StringNullableFilter<"SessaoAdminSistema"> | string | null
+    data_login?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    data_expiracao?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    ativo?: BoolFilter<"SessaoAdminSistema"> | boolean
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }, "id_sessao">
+
+  export type SessaoAdminSistemaOrderByWithAggregationInput = {
+    id_sessao?: SortOrder
+    id_admin?: SortOrder
+    ip_origem?: SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    data_login?: SortOrder
+    data_expiracao?: SortOrder
+    ativo?: SortOrder
+    _count?: SessaoAdminSistemaCountOrderByAggregateInput
+    _avg?: SessaoAdminSistemaAvgOrderByAggregateInput
+    _max?: SessaoAdminSistemaMaxOrderByAggregateInput
+    _min?: SessaoAdminSistemaMinOrderByAggregateInput
+    _sum?: SessaoAdminSistemaSumOrderByAggregateInput
+  }
+
+  export type SessaoAdminSistemaScalarWhereWithAggregatesInput = {
+    AND?: SessaoAdminSistemaScalarWhereWithAggregatesInput | SessaoAdminSistemaScalarWhereWithAggregatesInput[]
+    OR?: SessaoAdminSistemaScalarWhereWithAggregatesInput[]
+    NOT?: SessaoAdminSistemaScalarWhereWithAggregatesInput | SessaoAdminSistemaScalarWhereWithAggregatesInput[]
+    id_sessao?: StringWithAggregatesFilter<"SessaoAdminSistema"> | string
+    id_admin?: IntWithAggregatesFilter<"SessaoAdminSistema"> | number
+    ip_origem?: StringWithAggregatesFilter<"SessaoAdminSistema"> | string
+    user_agent?: StringNullableWithAggregatesFilter<"SessaoAdminSistema"> | string | null
+    data_login?: DateTimeWithAggregatesFilter<"SessaoAdminSistema"> | Date | string
+    data_expiracao?: DateTimeWithAggregatesFilter<"SessaoAdminSistema"> | Date | string
+    ativo?: BoolWithAggregatesFilter<"SessaoAdminSistema"> | boolean
   }
 
   export type ProvinciaCreateInput = {
@@ -27131,12 +29862,14 @@ export namespace Prisma {
     data_hora?: Date | string
     hospital?: HospitalCreateNestedOneWithoutLogsInput
     doador?: DoadorCreateNestedOneWithoutLogsInput
+    admin?: AdminCreateNestedOneWithoutLogsInput
   }
 
   export type LogAcessoUncheckedCreateInput = {
     id_log?: number
     id_hospital?: number | null
     id_doador?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -27150,12 +29883,14 @@ export namespace Prisma {
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     hospital?: HospitalUpdateOneWithoutLogsNestedInput
     doador?: DoadorUpdateOneWithoutLogsNestedInput
+    admin?: AdminUpdateOneWithoutLogsNestedInput
   }
 
   export type LogAcessoUncheckedUpdateInput = {
     id_log?: IntFieldUpdateOperationsInput | number
     id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
     id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
@@ -27166,6 +29901,7 @@ export namespace Prisma {
     id_log?: number
     id_hospital?: number | null
     id_doador?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -27183,10 +29919,148 @@ export namespace Prisma {
     id_log?: IntFieldUpdateOperationsInput | number
     id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
     id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminCreateInput = {
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    sessoes?: SessaoAdminSistemaCreateNestedManyWithoutAdminInput
+    logs?: LogAcessoCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateInput = {
+    id_admin?: number
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    sessoes?: SessaoAdminSistemaUncheckedCreateNestedManyWithoutAdminInput
+    logs?: LogAcessoUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUpdateInput = {
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessoes?: SessaoAdminSistemaUpdateManyWithoutAdminNestedInput
+    logs?: LogAcessoUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateInput = {
+    id_admin?: IntFieldUpdateOperationsInput | number
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessoes?: SessaoAdminSistemaUncheckedUpdateManyWithoutAdminNestedInput
+    logs?: LogAcessoUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminCreateManyInput = {
+    id_admin?: number
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+  }
+
+  export type AdminUpdateManyMutationInput = {
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUncheckedUpdateManyInput = {
+    id_admin?: IntFieldUpdateOperationsInput | number
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SessaoAdminSistemaCreateInput = {
+    id_sessao: string
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+    admin: AdminCreateNestedOneWithoutSessoesInput
+  }
+
+  export type SessaoAdminSistemaUncheckedCreateInput = {
+    id_sessao: string
+    id_admin: number
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+  }
+
+  export type SessaoAdminSistemaUpdateInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+    admin?: AdminUpdateOneRequiredWithoutSessoesNestedInput
+  }
+
+  export type SessaoAdminSistemaUncheckedUpdateInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    id_admin?: IntFieldUpdateOperationsInput | number
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SessaoAdminSistemaCreateManyInput = {
+    id_sessao: string
+    id_admin: number
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+  }
+
+  export type SessaoAdminSistemaUpdateManyMutationInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SessaoAdminSistemaUncheckedUpdateManyInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    id_admin?: IntFieldUpdateOperationsInput | number
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -28473,10 +31347,16 @@ export namespace Prisma {
     isNot?: DoadorWhereInput | null
   }
 
+  export type AdminNullableScalarRelationFilter = {
+    is?: AdminWhereInput | null
+    isNot?: AdminWhereInput | null
+  }
+
   export type LogAcessoCountOrderByAggregateInput = {
     id_log?: SortOrder
     id_hospital?: SortOrder
     id_doador?: SortOrder
+    id_admin?: SortOrder
     acao?: SortOrder
     descricao?: SortOrder
     ip_origem?: SortOrder
@@ -28487,12 +31367,14 @@ export namespace Prisma {
     id_log?: SortOrder
     id_hospital?: SortOrder
     id_doador?: SortOrder
+    id_admin?: SortOrder
   }
 
   export type LogAcessoMaxOrderByAggregateInput = {
     id_log?: SortOrder
     id_hospital?: SortOrder
     id_doador?: SortOrder
+    id_admin?: SortOrder
     acao?: SortOrder
     descricao?: SortOrder
     ip_origem?: SortOrder
@@ -28503,6 +31385,7 @@ export namespace Prisma {
     id_log?: SortOrder
     id_hospital?: SortOrder
     id_doador?: SortOrder
+    id_admin?: SortOrder
     acao?: SortOrder
     descricao?: SortOrder
     ip_origem?: SortOrder
@@ -28513,6 +31396,112 @@ export namespace Prisma {
     id_log?: SortOrder
     id_hospital?: SortOrder
     id_doador?: SortOrder
+    id_admin?: SortOrder
+  }
+
+  export type EnumStatusAdminFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAdmin | EnumStatusAdminFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAdminFilter<$PrismaModel> | $Enums.StatusAdmin
+  }
+
+  export type SessaoAdminSistemaListRelationFilter = {
+    every?: SessaoAdminSistemaWhereInput
+    some?: SessaoAdminSistemaWhereInput
+    none?: SessaoAdminSistemaWhereInput
+  }
+
+  export type SessaoAdminSistemaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AdminCountOrderByAggregateInput = {
+    id_admin?: SortOrder
+    nome_completo?: SortOrder
+    email?: SortOrder
+    senha_hash?: SortOrder
+    status?: SortOrder
+    data_criacao?: SortOrder
+  }
+
+  export type AdminAvgOrderByAggregateInput = {
+    id_admin?: SortOrder
+  }
+
+  export type AdminMaxOrderByAggregateInput = {
+    id_admin?: SortOrder
+    nome_completo?: SortOrder
+    email?: SortOrder
+    senha_hash?: SortOrder
+    status?: SortOrder
+    data_criacao?: SortOrder
+  }
+
+  export type AdminMinOrderByAggregateInput = {
+    id_admin?: SortOrder
+    nome_completo?: SortOrder
+    email?: SortOrder
+    senha_hash?: SortOrder
+    status?: SortOrder
+    data_criacao?: SortOrder
+  }
+
+  export type AdminSumOrderByAggregateInput = {
+    id_admin?: SortOrder
+  }
+
+  export type EnumStatusAdminWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAdmin | EnumStatusAdminFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAdminWithAggregatesFilter<$PrismaModel> | $Enums.StatusAdmin
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAdminFilter<$PrismaModel>
+    _max?: NestedEnumStatusAdminFilter<$PrismaModel>
+  }
+
+  export type AdminScalarRelationFilter = {
+    is?: AdminWhereInput
+    isNot?: AdminWhereInput
+  }
+
+  export type SessaoAdminSistemaCountOrderByAggregateInput = {
+    id_sessao?: SortOrder
+    id_admin?: SortOrder
+    ip_origem?: SortOrder
+    user_agent?: SortOrder
+    data_login?: SortOrder
+    data_expiracao?: SortOrder
+    ativo?: SortOrder
+  }
+
+  export type SessaoAdminSistemaAvgOrderByAggregateInput = {
+    id_admin?: SortOrder
+  }
+
+  export type SessaoAdminSistemaMaxOrderByAggregateInput = {
+    id_sessao?: SortOrder
+    id_admin?: SortOrder
+    ip_origem?: SortOrder
+    user_agent?: SortOrder
+    data_login?: SortOrder
+    data_expiracao?: SortOrder
+    ativo?: SortOrder
+  }
+
+  export type SessaoAdminSistemaMinOrderByAggregateInput = {
+    id_sessao?: SortOrder
+    id_admin?: SortOrder
+    ip_origem?: SortOrder
+    user_agent?: SortOrder
+    data_login?: SortOrder
+    data_expiracao?: SortOrder
+    ativo?: SortOrder
+  }
+
+  export type SessaoAdminSistemaSumOrderByAggregateInput = {
+    id_admin?: SortOrder
   }
 
   export type MunicipioCreateNestedManyWithoutProvinciaInput = {
@@ -29967,6 +32956,12 @@ export namespace Prisma {
     connect?: DoadorWhereUniqueInput
   }
 
+  export type AdminCreateNestedOneWithoutLogsInput = {
+    create?: XOR<AdminCreateWithoutLogsInput, AdminUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutLogsInput
+    connect?: AdminWhereUniqueInput
+  }
+
   export type HospitalUpdateOneWithoutLogsNestedInput = {
     create?: XOR<HospitalCreateWithoutLogsInput, HospitalUncheckedCreateWithoutLogsInput>
     connectOrCreate?: HospitalCreateOrConnectWithoutLogsInput
@@ -29985,6 +32980,118 @@ export namespace Prisma {
     delete?: DoadorWhereInput | boolean
     connect?: DoadorWhereUniqueInput
     update?: XOR<XOR<DoadorUpdateToOneWithWhereWithoutLogsInput, DoadorUpdateWithoutLogsInput>, DoadorUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type AdminUpdateOneWithoutLogsNestedInput = {
+    create?: XOR<AdminCreateWithoutLogsInput, AdminUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutLogsInput
+    upsert?: AdminUpsertWithoutLogsInput
+    disconnect?: AdminWhereInput | boolean
+    delete?: AdminWhereInput | boolean
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutLogsInput, AdminUpdateWithoutLogsInput>, AdminUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type SessaoAdminSistemaCreateNestedManyWithoutAdminInput = {
+    create?: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput> | SessaoAdminSistemaCreateWithoutAdminInput[] | SessaoAdminSistemaUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SessaoAdminSistemaCreateOrConnectWithoutAdminInput | SessaoAdminSistemaCreateOrConnectWithoutAdminInput[]
+    createMany?: SessaoAdminSistemaCreateManyAdminInputEnvelope
+    connect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+  }
+
+  export type LogAcessoCreateNestedManyWithoutAdminInput = {
+    create?: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput> | LogAcessoCreateWithoutAdminInput[] | LogAcessoUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: LogAcessoCreateOrConnectWithoutAdminInput | LogAcessoCreateOrConnectWithoutAdminInput[]
+    createMany?: LogAcessoCreateManyAdminInputEnvelope
+    connect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+  }
+
+  export type SessaoAdminSistemaUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput> | SessaoAdminSistemaCreateWithoutAdminInput[] | SessaoAdminSistemaUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SessaoAdminSistemaCreateOrConnectWithoutAdminInput | SessaoAdminSistemaCreateOrConnectWithoutAdminInput[]
+    createMany?: SessaoAdminSistemaCreateManyAdminInputEnvelope
+    connect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+  }
+
+  export type LogAcessoUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput> | LogAcessoCreateWithoutAdminInput[] | LogAcessoUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: LogAcessoCreateOrConnectWithoutAdminInput | LogAcessoCreateOrConnectWithoutAdminInput[]
+    createMany?: LogAcessoCreateManyAdminInputEnvelope
+    connect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+  }
+
+  export type EnumStatusAdminFieldUpdateOperationsInput = {
+    set?: $Enums.StatusAdmin
+  }
+
+  export type SessaoAdminSistemaUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput> | SessaoAdminSistemaCreateWithoutAdminInput[] | SessaoAdminSistemaUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SessaoAdminSistemaCreateOrConnectWithoutAdminInput | SessaoAdminSistemaCreateOrConnectWithoutAdminInput[]
+    upsert?: SessaoAdminSistemaUpsertWithWhereUniqueWithoutAdminInput | SessaoAdminSistemaUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: SessaoAdminSistemaCreateManyAdminInputEnvelope
+    set?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    disconnect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    delete?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    connect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    update?: SessaoAdminSistemaUpdateWithWhereUniqueWithoutAdminInput | SessaoAdminSistemaUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: SessaoAdminSistemaUpdateManyWithWhereWithoutAdminInput | SessaoAdminSistemaUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: SessaoAdminSistemaScalarWhereInput | SessaoAdminSistemaScalarWhereInput[]
+  }
+
+  export type LogAcessoUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput> | LogAcessoCreateWithoutAdminInput[] | LogAcessoUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: LogAcessoCreateOrConnectWithoutAdminInput | LogAcessoCreateOrConnectWithoutAdminInput[]
+    upsert?: LogAcessoUpsertWithWhereUniqueWithoutAdminInput | LogAcessoUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: LogAcessoCreateManyAdminInputEnvelope
+    set?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    disconnect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    delete?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    connect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    update?: LogAcessoUpdateWithWhereUniqueWithoutAdminInput | LogAcessoUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: LogAcessoUpdateManyWithWhereWithoutAdminInput | LogAcessoUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: LogAcessoScalarWhereInput | LogAcessoScalarWhereInput[]
+  }
+
+  export type SessaoAdminSistemaUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput> | SessaoAdminSistemaCreateWithoutAdminInput[] | SessaoAdminSistemaUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: SessaoAdminSistemaCreateOrConnectWithoutAdminInput | SessaoAdminSistemaCreateOrConnectWithoutAdminInput[]
+    upsert?: SessaoAdminSistemaUpsertWithWhereUniqueWithoutAdminInput | SessaoAdminSistemaUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: SessaoAdminSistemaCreateManyAdminInputEnvelope
+    set?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    disconnect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    delete?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    connect?: SessaoAdminSistemaWhereUniqueInput | SessaoAdminSistemaWhereUniqueInput[]
+    update?: SessaoAdminSistemaUpdateWithWhereUniqueWithoutAdminInput | SessaoAdminSistemaUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: SessaoAdminSistemaUpdateManyWithWhereWithoutAdminInput | SessaoAdminSistemaUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: SessaoAdminSistemaScalarWhereInput | SessaoAdminSistemaScalarWhereInput[]
+  }
+
+  export type LogAcessoUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput> | LogAcessoCreateWithoutAdminInput[] | LogAcessoUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: LogAcessoCreateOrConnectWithoutAdminInput | LogAcessoCreateOrConnectWithoutAdminInput[]
+    upsert?: LogAcessoUpsertWithWhereUniqueWithoutAdminInput | LogAcessoUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: LogAcessoCreateManyAdminInputEnvelope
+    set?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    disconnect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    delete?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    connect?: LogAcessoWhereUniqueInput | LogAcessoWhereUniqueInput[]
+    update?: LogAcessoUpdateWithWhereUniqueWithoutAdminInput | LogAcessoUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: LogAcessoUpdateManyWithWhereWithoutAdminInput | LogAcessoUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: LogAcessoScalarWhereInput | LogAcessoScalarWhereInput[]
+  }
+
+  export type AdminCreateNestedOneWithoutSessoesInput = {
+    create?: XOR<AdminCreateWithoutSessoesInput, AdminUncheckedCreateWithoutSessoesInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSessoesInput
+    connect?: AdminWhereUniqueInput
+  }
+
+  export type AdminUpdateOneRequiredWithoutSessoesNestedInput = {
+    create?: XOR<AdminCreateWithoutSessoesInput, AdminUncheckedCreateWithoutSessoesInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSessoesInput
+    upsert?: AdminUpsertWithoutSessoesInput
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutSessoesInput, AdminUpdateWithoutSessoesInput>, AdminUncheckedUpdateWithoutSessoesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -30356,6 +33463,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumStatusPedidoEntreHospitaisFilter<$PrismaModel>
     _max?: NestedEnumStatusPedidoEntreHospitaisFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusAdminFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAdmin | EnumStatusAdminFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAdminFilter<$PrismaModel> | $Enums.StatusAdmin
+  }
+
+  export type NestedEnumStatusAdminWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusAdmin | EnumStatusAdminFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StatusAdmin[] | ListEnumStatusAdminFieldRefInput<$PrismaModel>
+    not?: NestedEnumStatusAdminWithAggregatesFilter<$PrismaModel> | $Enums.StatusAdmin
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusAdminFilter<$PrismaModel>
+    _max?: NestedEnumStatusAdminFilter<$PrismaModel>
   }
 
   export type MunicipioCreateWithoutProvinciaInput = {
@@ -30872,11 +33996,13 @@ export namespace Prisma {
     ip_origem: string
     data_hora?: Date | string
     hospital?: HospitalCreateNestedOneWithoutLogsInput
+    admin?: AdminCreateNestedOneWithoutLogsInput
   }
 
   export type LogAcessoUncheckedCreateWithoutDoadorInput = {
     id_log?: number
     id_hospital?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -31117,6 +34243,7 @@ export namespace Prisma {
     id_log?: IntFilter<"LogAcesso"> | number
     id_hospital?: IntNullableFilter<"LogAcesso"> | number | null
     id_doador?: IntNullableFilter<"LogAcesso"> | number | null
+    id_admin?: IntNullableFilter<"LogAcesso"> | number | null
     acao?: StringFilter<"LogAcesso"> | string
     descricao?: StringFilter<"LogAcesso"> | string
     ip_origem?: StringFilter<"LogAcesso"> | string
@@ -31620,11 +34747,13 @@ export namespace Prisma {
     ip_origem: string
     data_hora?: Date | string
     doador?: DoadorCreateNestedOneWithoutLogsInput
+    admin?: AdminCreateNestedOneWithoutLogsInput
   }
 
   export type LogAcessoUncheckedCreateWithoutHospitalInput = {
     id_log?: number
     id_doador?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -33817,6 +36946,30 @@ export namespace Prisma {
     create: XOR<DoadorCreateWithoutLogsInput, DoadorUncheckedCreateWithoutLogsInput>
   }
 
+  export type AdminCreateWithoutLogsInput = {
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    sessoes?: SessaoAdminSistemaCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutLogsInput = {
+    id_admin?: number
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    sessoes?: SessaoAdminSistemaUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutLogsInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutLogsInput, AdminUncheckedCreateWithoutLogsInput>
+  }
+
   export type HospitalUpsertWithoutLogsInput = {
     update: XOR<HospitalUpdateWithoutLogsInput, HospitalUncheckedUpdateWithoutLogsInput>
     create: XOR<HospitalCreateWithoutLogsInput, HospitalUncheckedCreateWithoutLogsInput>
@@ -33921,6 +37074,192 @@ export namespace Prisma {
     agendamentos?: AgendaUncheckedUpdateManyWithoutDoadorNestedInput
     pedidosDoacoes?: PedidoDoacaoUncheckedUpdateManyWithoutDoadorNestedInput
     sessoes?: SessaoDoadorUncheckedUpdateManyWithoutDoadorNestedInput
+  }
+
+  export type AdminUpsertWithoutLogsInput = {
+    update: XOR<AdminUpdateWithoutLogsInput, AdminUncheckedUpdateWithoutLogsInput>
+    create: XOR<AdminCreateWithoutLogsInput, AdminUncheckedCreateWithoutLogsInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutLogsInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutLogsInput, AdminUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type AdminUpdateWithoutLogsInput = {
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessoes?: SessaoAdminSistemaUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutLogsInput = {
+    id_admin?: IntFieldUpdateOperationsInput | number
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessoes?: SessaoAdminSistemaUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type SessaoAdminSistemaCreateWithoutAdminInput = {
+    id_sessao: string
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+  }
+
+  export type SessaoAdminSistemaUncheckedCreateWithoutAdminInput = {
+    id_sessao: string
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+  }
+
+  export type SessaoAdminSistemaCreateOrConnectWithoutAdminInput = {
+    where: SessaoAdminSistemaWhereUniqueInput
+    create: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput>
+  }
+
+  export type SessaoAdminSistemaCreateManyAdminInputEnvelope = {
+    data: SessaoAdminSistemaCreateManyAdminInput | SessaoAdminSistemaCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LogAcessoCreateWithoutAdminInput = {
+    acao: string
+    descricao: string
+    ip_origem: string
+    data_hora?: Date | string
+    hospital?: HospitalCreateNestedOneWithoutLogsInput
+    doador?: DoadorCreateNestedOneWithoutLogsInput
+  }
+
+  export type LogAcessoUncheckedCreateWithoutAdminInput = {
+    id_log?: number
+    id_hospital?: number | null
+    id_doador?: number | null
+    acao: string
+    descricao: string
+    ip_origem: string
+    data_hora?: Date | string
+  }
+
+  export type LogAcessoCreateOrConnectWithoutAdminInput = {
+    where: LogAcessoWhereUniqueInput
+    create: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput>
+  }
+
+  export type LogAcessoCreateManyAdminInputEnvelope = {
+    data: LogAcessoCreateManyAdminInput | LogAcessoCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SessaoAdminSistemaUpsertWithWhereUniqueWithoutAdminInput = {
+    where: SessaoAdminSistemaWhereUniqueInput
+    update: XOR<SessaoAdminSistemaUpdateWithoutAdminInput, SessaoAdminSistemaUncheckedUpdateWithoutAdminInput>
+    create: XOR<SessaoAdminSistemaCreateWithoutAdminInput, SessaoAdminSistemaUncheckedCreateWithoutAdminInput>
+  }
+
+  export type SessaoAdminSistemaUpdateWithWhereUniqueWithoutAdminInput = {
+    where: SessaoAdminSistemaWhereUniqueInput
+    data: XOR<SessaoAdminSistemaUpdateWithoutAdminInput, SessaoAdminSistemaUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type SessaoAdminSistemaUpdateManyWithWhereWithoutAdminInput = {
+    where: SessaoAdminSistemaScalarWhereInput
+    data: XOR<SessaoAdminSistemaUpdateManyMutationInput, SessaoAdminSistemaUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type SessaoAdminSistemaScalarWhereInput = {
+    AND?: SessaoAdminSistemaScalarWhereInput | SessaoAdminSistemaScalarWhereInput[]
+    OR?: SessaoAdminSistemaScalarWhereInput[]
+    NOT?: SessaoAdminSistemaScalarWhereInput | SessaoAdminSistemaScalarWhereInput[]
+    id_sessao?: StringFilter<"SessaoAdminSistema"> | string
+    id_admin?: IntFilter<"SessaoAdminSistema"> | number
+    ip_origem?: StringFilter<"SessaoAdminSistema"> | string
+    user_agent?: StringNullableFilter<"SessaoAdminSistema"> | string | null
+    data_login?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    data_expiracao?: DateTimeFilter<"SessaoAdminSistema"> | Date | string
+    ativo?: BoolFilter<"SessaoAdminSistema"> | boolean
+  }
+
+  export type LogAcessoUpsertWithWhereUniqueWithoutAdminInput = {
+    where: LogAcessoWhereUniqueInput
+    update: XOR<LogAcessoUpdateWithoutAdminInput, LogAcessoUncheckedUpdateWithoutAdminInput>
+    create: XOR<LogAcessoCreateWithoutAdminInput, LogAcessoUncheckedCreateWithoutAdminInput>
+  }
+
+  export type LogAcessoUpdateWithWhereUniqueWithoutAdminInput = {
+    where: LogAcessoWhereUniqueInput
+    data: XOR<LogAcessoUpdateWithoutAdminInput, LogAcessoUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type LogAcessoUpdateManyWithWhereWithoutAdminInput = {
+    where: LogAcessoScalarWhereInput
+    data: XOR<LogAcessoUpdateManyMutationInput, LogAcessoUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type AdminCreateWithoutSessoesInput = {
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    logs?: LogAcessoCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutSessoesInput = {
+    id_admin?: number
+    nome_completo: string
+    email: string
+    senha_hash: string
+    status?: $Enums.StatusAdmin
+    data_criacao?: Date | string
+    logs?: LogAcessoUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutSessoesInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutSessoesInput, AdminUncheckedCreateWithoutSessoesInput>
+  }
+
+  export type AdminUpsertWithoutSessoesInput = {
+    update: XOR<AdminUpdateWithoutSessoesInput, AdminUncheckedUpdateWithoutSessoesInput>
+    create: XOR<AdminCreateWithoutSessoesInput, AdminUncheckedCreateWithoutSessoesInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutSessoesInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutSessoesInput, AdminUncheckedUpdateWithoutSessoesInput>
+  }
+
+  export type AdminUpdateWithoutSessoesInput = {
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: LogAcessoUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutSessoesInput = {
+    id_admin?: IntFieldUpdateOperationsInput | number
+    nome_completo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha_hash?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusAdminFieldUpdateOperationsInput | $Enums.StatusAdmin
+    data_criacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: LogAcessoUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type MunicipioCreateManyProvinciaInput = {
@@ -34189,6 +37528,7 @@ export namespace Prisma {
   export type LogAcessoCreateManyDoadorInput = {
     id_log?: number
     id_hospital?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -34338,11 +37678,13 @@ export namespace Prisma {
     ip_origem?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     hospital?: HospitalUpdateOneWithoutLogsNestedInput
+    admin?: AdminUpdateOneWithoutLogsNestedInput
   }
 
   export type LogAcessoUncheckedUpdateWithoutDoadorInput = {
     id_log?: IntFieldUpdateOperationsInput | number
     id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
@@ -34352,6 +37694,7 @@ export namespace Prisma {
   export type LogAcessoUncheckedUpdateManyWithoutDoadorInput = {
     id_log?: IntFieldUpdateOperationsInput | number
     id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
@@ -34420,6 +37763,7 @@ export namespace Prisma {
   export type LogAcessoCreateManyHospitalInput = {
     id_log?: number
     id_doador?: number | null
+    id_admin?: number | null
     acao: string
     descricao: string
     ip_origem: string
@@ -34652,11 +37996,13 @@ export namespace Prisma {
     ip_origem?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     doador?: DoadorUpdateOneWithoutLogsNestedInput
+    admin?: AdminUpdateOneWithoutLogsNestedInput
   }
 
   export type LogAcessoUncheckedUpdateWithoutHospitalInput = {
     id_log?: IntFieldUpdateOperationsInput | number
     id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
@@ -34666,6 +38012,7 @@ export namespace Prisma {
   export type LogAcessoUncheckedUpdateManyWithoutHospitalInput = {
     id_log?: IntFieldUpdateOperationsInput | number
     id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    id_admin?: NullableIntFieldUpdateOperationsInput | number | null
     acao?: StringFieldUpdateOperationsInput | string
     descricao?: StringFieldUpdateOperationsInput | string
     ip_origem?: StringFieldUpdateOperationsInput | string
@@ -34907,6 +38254,81 @@ export namespace Prisma {
     status?: EnumStatusMensagemFieldUpdateOperationsInput | $Enums.StatusMensagem
     data_envio?: DateTimeFieldUpdateOperationsInput | Date | string
     data_leitura?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessaoAdminSistemaCreateManyAdminInput = {
+    id_sessao: string
+    ip_origem: string
+    user_agent?: string | null
+    data_login?: Date | string
+    data_expiracao: Date | string
+    ativo?: boolean
+  }
+
+  export type LogAcessoCreateManyAdminInput = {
+    id_log?: number
+    id_hospital?: number | null
+    id_doador?: number | null
+    acao: string
+    descricao: string
+    ip_origem: string
+    data_hora?: Date | string
+  }
+
+  export type SessaoAdminSistemaUpdateWithoutAdminInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SessaoAdminSistemaUncheckedUpdateWithoutAdminInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SessaoAdminSistemaUncheckedUpdateManyWithoutAdminInput = {
+    id_sessao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    data_login?: DateTimeFieldUpdateOperationsInput | Date | string
+    data_expiracao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type LogAcessoUpdateWithoutAdminInput = {
+    acao?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    hospital?: HospitalUpdateOneWithoutLogsNestedInput
+    doador?: DoadorUpdateOneWithoutLogsNestedInput
+  }
+
+  export type LogAcessoUncheckedUpdateWithoutAdminInput = {
+    id_log?: IntFieldUpdateOperationsInput | number
+    id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
+    id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    acao?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LogAcessoUncheckedUpdateManyWithoutAdminInput = {
+    id_log?: IntFieldUpdateOperationsInput | number
+    id_hospital?: NullableIntFieldUpdateOperationsInput | number | null
+    id_doador?: NullableIntFieldUpdateOperationsInput | number | null
+    acao?: StringFieldUpdateOperationsInput | string
+    descricao?: StringFieldUpdateOperationsInput | string
+    ip_origem?: StringFieldUpdateOperationsInput | string
+    data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
